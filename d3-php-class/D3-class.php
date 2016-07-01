@@ -4,19 +4,55 @@
 
 class D3{
 
-    function __construct()
+    private $data;
+    public $chart;
+
+    function __construct($type='', $chart_data=array())
     {
 
+        $this->data = $chart_data;
+
+        switch($type){
+
+            case $type='simple_pie_chart';
+                
+                $built_chart = $this->simple_pie_chart();
+
+                $this->chart = $this->load($built_chart);
+                
+                break;
+
+        }
+
     }
+
+    public function __toString()
+    {
+        return $this->chart;
+    }
+
 
     /**
-     * Build js
+     *
      */
-    function build(){
+    function load($built_chart=''){
+
+
+        $load='<script type="text/javascript">';
+        $load.=$built_chart;
+        $load.='</script>';
+
+
+        return $load;
 
     }
-
+    
+    
     function simple_pie_chart(){
+
+        $pie_chart = new D3_Pie_Chart($this->data);
+        
+        return $pie_chart;
 
     }
 
@@ -27,3 +63,13 @@ class D3{
 
 
 }
+
+define('BUILDER_PATH','builder');
+
+spl_autoload_register(function($className)
+{
+    $namespace=str_replace("\\","/",__NAMESPACE__);
+    $className=str_replace("\\","/",$className);
+    $class=BUILDER_PATH."/{$className}-class.php";
+    include_once($class);
+});
