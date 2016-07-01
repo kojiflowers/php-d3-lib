@@ -61,6 +61,11 @@ class D3{
 
     }
 
+    // http://bl.ocks.org/mbostock/5944371
+    function bi_level_partition(){
+
+    }
+
 
 }
 
