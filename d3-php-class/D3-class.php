@@ -31,9 +31,19 @@ class D3{
         return $this->chart;
     }
 
+    /**
+     * Render the finished chart
+     * @return string
+     */
+    public function render(){
+        return $this->chart;
+    }
+
 
     /**
-     *
+     * Add the "<script>" wrapper
+     * @param string $built_chart
+     * @return string
      */
     function load($built_chart=''){
 

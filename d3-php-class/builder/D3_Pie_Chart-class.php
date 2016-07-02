@@ -15,6 +15,26 @@ class D3_Pie_Chart
         $this->height=$full_data_array['dimensions']['height'];
         $this->width=$full_data_array['dimensions']['width'];
         $this->radius=$full_data_array['dimensions']['radius'];
+
+        $this->render_element = '';
+        if(isset($full_data_array['render_element']['value'])){
+
+            $type = '#';
+
+            if($full_data_array['render_element']['type'] == 'class'){
+                $type='.';
+            }
+
+            $this->render_element = $type.$full_data_array['render_element']['value'];
+        }
+        
+        if(isset($full_data_array['colors'])){
+            
+            $this->colors = '["'.implode('","', $full_data_array['colors']).'"]';
+            
+        }else{
+            $this->colors = '["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]';
+        }
         
         $this->chart_complete = $this->build_simple_pie_chart();
 
@@ -35,12 +55,12 @@ class D3_Pie_Chart
         $return ='var w = '.$this->width.','."\n";                        //width
         $return .=' h = '.$this->height.','."\n";                           //height
         $return .=' r = '.$this->radius.','."\n";                            //radius
-        $return .=' color = d3.scale.category20c();'."\n"."\n";     //builtin range of colors
+        $return .='color = d3.scale.ordinal()
+    .range('.$this->colors.');'."\n"."\n";     //builtin range of colors
     $return .='data = ';
         $return.= json_encode($this->data_array);
         $return .='; ';
-
-        $return .= 'var vis = d3.select("body")'."\n";
+        $return .= 'var vis = d3.select("'.$this->render_element.'")'."\n";
         $return .= '.append("svg:svg")'."\n";               //create the SVG element inside the <body>
         $return .= '.data([data])'."\n";                 //associate our data with the document
         $return .= '.attr("width", w)'."\n";          //set the width and height of our visualization (these will be attributes of the <svg> tag
