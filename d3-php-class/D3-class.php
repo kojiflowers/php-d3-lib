@@ -14,12 +14,20 @@ class D3{
 
         switch($type){
 
-            case $type='simple_pie_chart';
+            case 'simple_pie_chart';
                 
                 $built_chart = $this->simple_pie_chart();
 
                 $this->chart = $this->load($built_chart);
                 
+                break;
+
+            case 'simple_bar_chart';
+
+                $built_chart = $this->simple_bar_chart();
+
+                $this->chart = $this->load($built_chart);
+
                 break;
 
         }
@@ -68,6 +76,10 @@ class D3{
 
     // https://bl.ocks.org/mbostock/3885304
     function simple_bar_chart(){
+
+        $bar_chart = new D3_Bar_Chart($this->data);
+
+        return $bar_chart;
 
     }
 
