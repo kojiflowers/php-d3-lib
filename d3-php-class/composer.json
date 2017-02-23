@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "classmap": [
+      "D3.php",
+      "Builder"
+    ]
+  }
+}

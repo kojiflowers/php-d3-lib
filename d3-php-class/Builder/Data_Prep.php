@@ -1,4 +1,4 @@
-<?php
+<?php namespace D3\Builder;
 
 /**
  * Created by PhpStorm.

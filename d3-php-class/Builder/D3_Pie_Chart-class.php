@@ -1,4 +1,4 @@
-<?php
+<?php namespace D3\Builder;
 
 class D3_Pie_Chart
 {

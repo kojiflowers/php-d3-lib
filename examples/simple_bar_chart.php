@@ -77,7 +77,7 @@ echo $chart_render;
 <?php
 
 
-include('../d3-php-class/D3-class.php');
+include('../d3-php-class/autoloader.php');
 
 $data = array(
     'data_file'=>'chart_data.tsv',
@@ -96,7 +96,7 @@ $data = array(
     'file_type'=>'tsv',
 );
 
-$chart = new D3('simple_bar_chart',$data);
+$chart = new D3\D3('simple_bar_chart',$data);
 $chart_render = $chart->render();
 
 

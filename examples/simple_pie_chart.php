@@ -137,7 +137,7 @@ echo $chart_two_render;
 <?php
 
 
-include('../d3-php-class/D3-class.php');
+include('../d3-php-class/autoloader.php');
 
 $data = array(
     'chart_data'=>array(
@@ -182,7 +182,7 @@ $data = array(
     )
 );
 
-$chart = new D3('simple_pie_chart',$data);
+$chart = new D3/D3('simple_pie_chart',$data);
 $chart_render = $chart->render();
 
 echo $chart;

@@ -1,4 +1,7 @@
-<?php
+<?php namespace D3;
+
+use D3\Builder\D3_Pie_Chart;
+use D3\Builder\D3_Bar_Chart;
 
 // ref: https://github.com/d3/d3/wiki/Gallery
 
@@ -90,13 +93,3 @@ class D3{
 
 
 }
-
-define('BUILDER_PATH','builder');
-
-spl_autoload_register(function($className)
-{
-    $namespace=str_replace("\\","/",__NAMESPACE__);
-    $className=str_replace("\\","/",$className);
-    $class=BUILDER_PATH."/{$className}-class.php";
-    include_once($class);
-});
