@@ -182,7 +182,7 @@ $data = array(
     )
 );
 
-$chart = new D3/D3('simple_pie_chart',$data);
+$chart = new D3\D3('simple_pie_chart',$data);
 $chart_render = $chart->render();
 
 echo $chart;
@@ -230,7 +230,7 @@ $data_two = array(
     )
 );
 
-$chart_two = new D3('simple_pie_chart',$data_two);
+$chart_two = new D3\D3('simple_pie_chart',$data_two);
 $chart_two_render = $chart_two->render();
 
 echo $chart_two_render;
