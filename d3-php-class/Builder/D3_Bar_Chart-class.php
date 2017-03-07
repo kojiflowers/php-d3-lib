@@ -65,8 +65,7 @@ class D3_Bar_Chart
         width = ".$this->width." - margin.left - margin.right,
         height = ".$this->height." - margin.top - margin.bottom;
 
-        var x = d3.scale.ordinal()
-            .rangeRoundBands([0, width], .1);
+        
         
         var y = d3.scale.linear()
             .range([height, 0]);
