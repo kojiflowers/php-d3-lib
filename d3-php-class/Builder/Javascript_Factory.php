@@ -36,6 +36,24 @@ class Javascript_Factory extends Builder
     function setVarY()
     {
 
+        return "var y = d3.scale.linear()
+            .range([height, 0]);";
+
+    }
+
+    function setVarXAxis($scale="x",$orientation="bottom"){
+
+        return "var xAxis = d3.svg.axis()
+            .scale(".$scale.")
+            .orient(\"".$orientation."\");";
+
+    }
+
+    function setVarYAxis($scale='y',$orienation="left",$ticks=10,$tickSymbol="%"){
+        return "var yAxis = d3.svg.axis()
+            .scale(".$scale.")
+            .orient(\"".$orienation."\")
+            .ticks(".$ticks.", \"".$tickSymbol."\");";
     }
 
 

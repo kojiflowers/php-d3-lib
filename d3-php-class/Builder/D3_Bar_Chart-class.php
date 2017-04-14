@@ -1,20 +1,28 @@
 <?php namespace D3\Builder;
 
+use D3\Builder\Javascript_Factory;
 
 class D3_Bar_Chart
 {
-
-    private $data_file = '';
-    private $height = '';
-    private $width = '';
-    private $margin_right = '';
-    private $margin_left = '';
-    private $margin_top = '';
-    private $margin_bottom = '';
     public $chart_complete;
+
+    protected $data_file = '';
+    protected $height = '';
+    protected $width = '';
+    protected $margin_right = '';
+    protected $margin_left = '';
+    protected $margin_top = '';
+    protected $margin_bottom = '';
+
+    protected $js_factory;
+
+
+
 
     function __construct($full_data_array=array())
     {
+
+        $this->js_factory = new Javascript_Factory();
         $this->data_file = $full_data_array['data_file'];
         $this->height= (isset($full_data_array['dimensions']['height'])) ? $full_data_array['dimensions']['height'] : 500;
         $this->width= (isset($full_data_array['dimensions']['width'])) ? $full_data_array['dimensions']['width'] : 960;
@@ -58,26 +66,16 @@ class D3_Bar_Chart
 
     function build_simple_bar_chart()
     {
-
         //example from https://gist.github.com/enjalot/1203641
 
-        $return="var margin = {top: ".$this->margin_top.", right: ".$this->margin_right.", bottom: ".$this->margin_bottom.", left: ".$this->margin_left."},
-        width = ".$this->width." - margin.left - margin.right,
-        height = ".$this->height." - margin.top - margin.bottom;
-
+       $return =  $this->js_factory->setDimensions();
+       $return .= $this->js_factory->setVarX();
+       $return .= $this->js_factory->setVarY();
+       $return .= $this->js_factory->setVarXAxis();
+       $return .= $this->js_factory->setVarYAxis();
         
+        $return.="
         
-        var y = d3.scale.linear()
-            .range([height, 0]);
-        
-        var xAxis = d3.svg.axis()
-            .scale(x)
-            .orient(\"bottom\");
-        
-        var yAxis = d3.svg.axis()
-            .scale(y)
-            .orient(\"left\")
-            .ticks(10, \"%\");
         
         var svg = d3.select(\"".$this->render_element."\").append(\"svg\")
             .attr(\"width\", width + margin.left + margin.right)
