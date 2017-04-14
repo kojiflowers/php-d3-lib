@@ -1,6 +1,5 @@
 <?php namespace D3\Builder;
 
-
 class Javascript_Factory extends Builder
 {
     function __construct()
@@ -54,6 +53,16 @@ class Javascript_Factory extends Builder
             .scale(".$scale.")
             .orient(\"".$orienation."\")
             .ticks(".$ticks.", \"".$tickSymbol."\");";
+    }
+
+    function setVarSvg($render_element){
+
+        return " var svg = d3.select(\"".$render_element."\").append(\"svg\")
+            .attr(\"width\", width + margin.left + margin.right)
+            .attr(\"height\", height + margin.top + margin.bottom)
+            .append(\"g\")
+            .attr(\"transform\", \"translate(\" + margin.left + \",\" + margin.top + \")\");";
+
     }
 
 

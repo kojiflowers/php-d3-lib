@@ -73,15 +73,9 @@ class D3_Bar_Chart
        $return .= $this->js_factory->setVarY();
        $return .= $this->js_factory->setVarXAxis();
        $return .= $this->js_factory->setVarYAxis();
-        
+       $return .= $this->js_factory->setVarSvg($this->render_element);
+
         $return.="
-        
-        
-        var svg = d3.select(\"".$this->render_element."\").append(\"svg\")
-            .attr(\"width\", width + margin.left + margin.right)
-            .attr(\"height\", height + margin.top + margin.bottom)
-            .append(\"g\")
-            .attr(\"transform\", \"translate(\" + margin.left + \",\" + margin.top + \")\");
         
         d3.".$this->file_type."(\"".$this->data_file."\", type, function(error, data) {
           if (error) throw error;
