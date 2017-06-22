@@ -1,6 +1,6 @@
-<?php namespace D3\Builder;
+<?php namespace PhpD3\Builder;
 
-use D3\Builder\Javascript_Factory;
+use PhpD3\Builder\Javascript_Factory;
 
 class D3_Bar_Chart
 {

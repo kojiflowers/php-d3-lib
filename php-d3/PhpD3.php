@@ -1,11 +1,11 @@
-<?php namespace D3;
+<?php namespace PhpD3;
 
-use D3\Builder\D3_Pie_Chart;
-use D3\Builder\D3_Bar_Chart;
+use PhpD3\Builder\D3_Pie_Chart;
+use PhpD3\Builder\D3_Bar_Chart;
 
 // ref: https://github.com/d3/d3/wiki/Gallery
 
-class D3{
+class Chart{
 
     private $data;
     public $chart;

@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Testing Bar Chart</title>
-    <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="js/d3.v3.min.js"></script>
 
     <style type="text/css">
         .bar {
@@ -40,7 +40,7 @@
 
 <h4>To begin be sure to include the library</h4>
 <pre>
-    include('../d3-php-class/D3-class.php');
+    include('../php-d3/autoloader.php');
 </pre>
 
 <h3>Bar Chart 1</h3>
@@ -48,36 +48,6 @@
 
 <h4>Bar Chart 1 PHP Code</h4>
 <pre>
-
-   $data = array(
-    'data_file'=>'chart_data.tsv',
-    'dimensions'=>array(
-        'height'=>500,
-        'width'=>960
-    ),
-    'render_element'=>array(
-        'value'=>'chart',
-        'type'=>'id'
-    ),
-    'axis_data'=>array(
-        'x_axis_label'=>'letter',
-        'y_axis_label'=>'frequency',
-    ),
-    'file_type'=>'tsv',
-);
-
-$chart = new D3('simple_bar_chart',$data);
-$chart_render = $chart->render();
-
-
-echo $chart_render;
-
-</pre>
-
-<?php
-
-
-include('../d3-php-class/autoloader.php');
 
 $data = array(
     'data_file'=>'chart_data.tsv',
@@ -96,7 +66,37 @@ $data = array(
     'file_type'=>'tsv',
 );
 
-$chart = new D3\D3('simple_bar_chart',$data);
+$chart = new PhpD3\Chart('simple_bar_chart',$data);
+$chart_render = $chart->render();
+
+
+echo $chart_render;
+
+</pre>
+
+<?php
+
+
+include('../php-d3/autoloader.php');
+
+$data = array(
+    'data_file'=>'chart_data.tsv',
+    'dimensions'=>array(
+        'height'=>500,
+        'width'=>960
+    ),
+    'render_element'=>array(
+        'value'=>'chart',
+        'type'=>'id'
+    ),
+    'axis_data'=>array(
+        'x_axis_label'=>'letter',
+        'y_axis_label'=>'frequency',
+    ),
+    'file_type'=>'tsv',
+);
+
+$chart = new PhpD3\Chart('simple_bar_chart',$data);
 $chart_render = $chart->render();
 
 
