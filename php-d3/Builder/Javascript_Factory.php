@@ -64,7 +64,4 @@ class Javascript_Factory extends Builder
             .attr(\"transform\", \"translate(\" + margin.left + \",\" + margin.top + \")\");";
 
     }
-
-
-
 }

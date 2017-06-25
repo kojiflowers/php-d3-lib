@@ -2,7 +2,6 @@
 
 class D3_Pie_Chart
 {
-    
     private $data_array = array();
     private $height = '';
     private $width = '';
@@ -48,9 +47,7 @@ class D3_Pie_Chart
 
     function build_simple_pie_chart()
     {
-
         //example from https://gist.github.com/enjalot/1203641
-
 
         $return ="var w = ".$this->width.",
         h = ".$this->height.",

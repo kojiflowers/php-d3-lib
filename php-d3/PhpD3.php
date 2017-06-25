@@ -10,12 +10,11 @@ class Chart{
     private $data;
     public $chart;
 
-    function __construct($type='', $chart_data=array())
+    function __construct($type, $chart_data=array())
     {
-
         $this->data = $chart_data;
-
-        switch($type){
+        if($type){
+            switch($type){
 
             case 'simple_pie_chart';
                 
@@ -33,6 +32,7 @@ class Chart{
 
                 break;
 
+            }
         }
 
     }
@@ -57,37 +57,40 @@ class Chart{
      * @return string
      */
     function load($built_chart=''){
-
-
         $load='<script type="text/javascript">';
         $load.=$built_chart;
         $load.='</script>';
 
-
         return $load;
-
     }
     
-    
-    function simple_pie_chart(){
+    /**
+     * create simple pie chart
+     *
+     * @return D3_Pie_Chart
+     */
+    private function simple_pie_chart(){
 
         $pie_chart = new D3_Pie_Chart($this->data);
         
         return $pie_chart;
-
     }
 
-    // https://bl.ocks.org/mbostock/3885304
-    function simple_bar_chart(){
+    /**
+     * Create a simple bar chart
+     * https://bl.ocks.org/mbostock/3885304
+     * 
+     * @return void
+     */
+    private function simple_bar_chart(){
 
         $bar_chart = new D3_Bar_Chart($this->data);
 
         return $bar_chart;
-
     }
 
     // http://bl.ocks.org/mbostock/5944371
-    function bi_level_partition(){
+    private function bi_level_partition(){
 
     }
 

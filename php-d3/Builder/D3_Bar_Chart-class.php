@@ -16,9 +16,6 @@ class D3_Bar_Chart
 
     protected $js_factory;
 
-
-
-
     function __construct($full_data_array=array())
     {
 

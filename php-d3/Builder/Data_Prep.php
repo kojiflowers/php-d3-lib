@@ -1,14 +1,7 @@
 <?php namespace PhpD3\Builder;
 
-/**
- * Created by PhpStorm.
- * User: kojiflowers
- * Date: 2/22/17
- * Time: 7:10 AM
- */
 class Data_Prep extends Builder
 {
-
     protected $type;
     protected $data;
 
