@@ -18,7 +18,7 @@ class Chart{
 
             case 'simple_pie_chart';
                 
-                $built_chart = $this->simple_pie_chart();
+                $built_chart = $this->simplePieChart();
 
                 $this->chart = $this->load($built_chart);
                 
@@ -26,7 +26,7 @@ class Chart{
 
             case 'simple_bar_chart';
 
-                $built_chart = $this->simple_bar_chart();
+                $built_chart = $this->simpleBarChart();
 
                 $this->chart = $this->load($built_chart);
 
@@ -69,7 +69,7 @@ class Chart{
      *
      * @return D3_Pie_Chart
      */
-    private function simple_pie_chart(){
+    private function simplePieChart(){
 
         $pie_chart = new D3_Pie_Chart($this->data);
         
@@ -80,9 +80,9 @@ class Chart{
      * Create a simple bar chart
      * https://bl.ocks.org/mbostock/3885304
      * 
-     * @return void
+     * @return D3_Bar_Chart
      */
-    private function simple_bar_chart(){
+    private function simpleBarChart(){
 
         $bar_chart = new D3_Bar_Chart($this->data);
 

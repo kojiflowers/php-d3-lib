@@ -7,10 +7,6 @@ class Javascript_Factory extends Builder
 
     }
 
-    function Range(){
-
-    }
-
     function Select($select = 'svg')
     {
         return 'd3.select("'.$select.'")';

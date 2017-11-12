@@ -35,7 +35,7 @@ class D3_Pie_Chart
             $this->colors = '["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]';
         }
         
-        $this->chart_complete = $this->build_simple_pie_chart();
+        $this->chart_complete = $this->buildSimpleBarChart();
 
 
     }
@@ -45,7 +45,7 @@ class D3_Pie_Chart
         return $this->chart_complete;
     }
 
-    function build_simple_pie_chart()
+    function buildSimpleBarChart()
     {
         //example from https://gist.github.com/enjalot/1203641
 

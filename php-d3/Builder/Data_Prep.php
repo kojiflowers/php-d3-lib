@@ -14,7 +14,7 @@ class Data_Prep extends Builder
 
             case 'tsv';
 
-                $this->prep_tsv();
+                $this->prepTsv();
 
             break;
 
@@ -29,13 +29,13 @@ class Data_Prep extends Builder
 
     }
 
-    function prep_tsv()
+    function prepTsv()
     {
         $this->data;
 
     }
 
-    function prep_csv(){
+    function prepCsv(){
 
         $this->data;
 

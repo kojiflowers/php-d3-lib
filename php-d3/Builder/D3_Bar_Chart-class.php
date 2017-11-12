@@ -51,7 +51,7 @@ class D3_Bar_Chart
             $this->colors = '["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]';
         }
 
-        $this->chart_complete = $this->build_simple_bar_chart();
+        $this->chart_complete = $this->buildSimpleBarChart();
 
 
     }
@@ -61,11 +61,12 @@ class D3_Bar_Chart
         return $this->chart_complete;
     }
 
-    function build_simple_bar_chart()
+
+    function buildSimpleBarChart()
     {
         //example from https://gist.github.com/enjalot/1203641
 
-       $return =  $this->js_factory->setDimensions();
+       $return = $this->js_factory->setDimensions();
        $return .= $this->js_factory->setVarX();
        $return .= $this->js_factory->setVarY();
        $return .= $this->js_factory->setVarXAxis();
