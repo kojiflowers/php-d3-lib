@@ -1,5 +1,9 @@
 <?php namespace PhpD3\Builder;
 
+/**
+ * Class D3_Bar_Graph
+ * @package PhpD3\Builder
+ */
 class D3_Bar_Graph
 {
     public $chart_complete;
@@ -22,8 +26,9 @@ class D3_Bar_Graph
 
     function __construct($full_data_array=array())
     {
-
+        // @todo change this to accept json array of data instead of TSV - process TSV prior to passing to script
         $this->data_file = $full_data_array['data_file'];
+
         $this->height= (isset($full_data_array['dimensions']['height'])) ? $full_data_array['dimensions']['height'] : 500;
         $this->width= (isset($full_data_array['dimensions']['width'])) ? $full_data_array['dimensions']['width'] : 960;
         $this->x_axis_label = $full_data_array['axis_data']['x_axis_label'];
@@ -54,7 +59,7 @@ class D3_Bar_Graph
             $this->colors = '["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]';
         }
 
-        $this->chart_complete = $this->buildSimpleBarChart();
+        $this->chart_complete = $this->buildGraph();
 
 
     }
@@ -65,7 +70,7 @@ class D3_Bar_Graph
     }
 
 
-    function buildSimpleBarChart()
+    function buildGraph()
     {
         //example from https://gist.github.com/enjalot/1203641
 

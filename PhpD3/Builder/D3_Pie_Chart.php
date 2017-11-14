@@ -1,9 +1,13 @@
 <?php namespace PhpD3\Builder;
 
+/**
+ * Class D3_Pie_Chart
+ * @package PhpD3\Builder
+ */
 class D3_Pie_Chart
 {
     public $chart_complete;
-    
+
     protected $render_element;
     protected $data_array = array();
     protected $height = '';
@@ -37,7 +41,7 @@ class D3_Pie_Chart
             $this->colors = '["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]';
         }
         
-        $this->chart_complete = $this->buildSimpleBarChart();
+        $this->chart_complete = $this->buildChart();
 
 
     }
@@ -47,7 +51,7 @@ class D3_Pie_Chart
         return $this->chart_complete;
     }
 
-    function buildSimpleBarChart()
+    function buildChart()
     {
         //example from https://gist.github.com/enjalot/1203641
 
