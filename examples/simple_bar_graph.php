@@ -40,7 +40,7 @@
 
 <h4>To begin be sure to include the library</h4>
 <pre>
-    include('../php-d3/autoloader.php');
+    include('../PhpD3/autoloader.php');
 </pre>
 
 <h3>Bar Chart 1</h3>
@@ -66,7 +66,7 @@ $data = array(
     'file_type'=>'tsv',
 );
 
-$chart = new PhpD3\Chart('simple_bar_chart',$data);
+$chart = new PhpD3\Draw('simple_bar_graph',$data);
 $chart_render = $chart->render();
 
 
@@ -77,7 +77,7 @@ echo $chart_render;
 <?php
 
 
-include('../php-d3/autoloader.php');
+include('../PhpD3/autoloader.php');
 
 $data = array(
     'data_file'=>'chart_data.tsv',
@@ -96,7 +96,7 @@ $data = array(
     'file_type'=>'tsv',
 );
 
-$chart = new PhpD3\Chart('simple_bar_chart',$data);
+$chart = new PhpD3\Draw('simple_bar_graph',$data);
 $chart_render = $chart->render();
 
 

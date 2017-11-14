@@ -21,7 +21,7 @@
 
 <h4>To begin be sure to include the library</h4>
 <pre>
-    include('../php-d3/autoloader.php');
+    include('../PhpD3/autoloader.php');
 </pre>
 
 <h3>Pie Chart 1</h3>
@@ -73,7 +73,7 @@ $data = array(
     )
 );
 
-$chart = new PhpD3\Chart('simple_pie_chart',$data);
+$chart = new PhpD3\Draw('simple_pie_chart',$data);
 $chart_render = $chart->render();
 
 echo $chart;
@@ -129,7 +129,7 @@ $data_two = array(
     )
 );
 
-$chart_two = new PhpD3\Chart('simple_pie_chart',$data_two);
+$chart_two = new PhpD3\Draw('simple_pie_chart',$data_two);
 $chart_two_render = $chart_two->render();
 
 echo $chart_two_render;
@@ -137,7 +137,7 @@ echo $chart_two_render;
 <?php
 
 
-include('../php-d3/autoloader.php');
+include('../phpD3/autoloader.php');
 
 $data = array(
     'chart_data'=>array(
@@ -182,7 +182,7 @@ $data = array(
     )
 );
 
-$chart = new PhpD3\Chart('simple_pie_chart',$data);
+$chart = new PhpD3\Draw('simple_pie_chart',$data);
 $chart_render = $chart->render();
 
 echo $chart;
@@ -230,7 +230,7 @@ $data_two = array(
     )
 );
 
-$chart_two = new PhpD3\Chart('simple_pie_chart',$data_two);
+$chart_two = new PhpD3\Draw('simple_pie_chart',$data_two);
 $chart_two_render = $chart_two->render();
 
 echo $chart_two_render;

@@ -1,11 +1,11 @@
 <?php namespace PhpD3;
 
 use PhpD3\Builder\D3_Pie_Chart;
-use PhpD3\Builder\D3_Bar_Chart;
+use PhpD3\Builder\D3_Bar_Graph;
 
 // ref: https://github.com/d3/d3/wiki/Gallery
 
-class Chart{
+class Draw{
 
     private $data;
     public $chart;
@@ -24,9 +24,9 @@ class Chart{
                 
                 break;
 
-            case 'simple_bar_chart';
+            case 'simple_bar_graph';
 
-                $built_chart = $this->simpleBarChart();
+                $built_chart = $this->simpleBarGraph();
 
                 $this->chart = $this->load($built_chart);
 
@@ -80,11 +80,11 @@ class Chart{
      * Create a simple bar chart
      * https://bl.ocks.org/mbostock/3885304
      * 
-     * @return D3_Bar_Chart
+     * @return D3_Bar_Graph
      */
-    private function simpleBarChart(){
+    private function simpleBarGraph(){
 
-        $bar_chart = new D3_Bar_Chart($this->data);
+        $bar_chart = new D3_Bar_Graph($this->data);
 
         return $bar_chart;
     }

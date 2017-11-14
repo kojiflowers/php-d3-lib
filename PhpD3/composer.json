@@ -1,7 +1,7 @@
 {
   "autoload": {
     "classmap": [
-      "PhpD3.php",
+      "Draw.php",
       "Builder"
     ]
   }
