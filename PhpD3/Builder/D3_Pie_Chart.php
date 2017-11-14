@@ -2,11 +2,13 @@
 
 class D3_Pie_Chart
 {
-    private $data_array = array();
-    private $height = '';
-    private $width = '';
-    private $radius = '';
     public $chart_complete;
+    
+    protected $render_element;
+    protected $data_array = array();
+    protected $height = '';
+    protected $width = '';
+    protected $radius = '';
 
     function __construct($full_data_array=array())
     {
@@ -53,11 +55,12 @@ class D3_Pie_Chart
         h = ".$this->height.",
         r = ".$this->radius.",
         color = d3.scale.ordinal()
-            .range(".$this->colors.");
+        .range(".$this->colors.");
         
         data = ".json_encode($this->data_array).";
         
-        var vis = d3.select(\"".$this->render_element."\").append(\"svg:svg\")
+        var vis = d3.select(\"".$this->render_element."\")
+        .append(\"svg:svg\")
         .data([data])
         .attr(\"width\", w)
         .attr(\"height\", h)
