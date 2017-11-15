@@ -1,14 +1,14 @@
 <?php namespace PhpD3\Builder;
 
 /**
- * Class D3_Stacked_Bar_Graph
+ * Class BarGraph
  * @package PhpD3\Builder
  */
-class D3_Stacked_Bar_Graph
+class StackedBarGraph extends Builder
 {
     public $chart_complete;
 
-    protected $data = '';
+    protected $data_file = '';
     protected $height = '';
     protected $width = '';
     protected $margin_right = '';
@@ -23,10 +23,17 @@ class D3_Stacked_Bar_Graph
     protected $colors;
     protected $render_element;
     protected $file_type;
+    protected $data;
 
     function __construct($full_data_array=array())
     {
-        $this->data = $full_data_array['data'];
+
+        parent::__construct();
+
+        $this->data_file = $full_data_array['data_file'];
+        $this->file_type = (isset($full_data_array['file_type'])) ? $full_data_array['file_type'] : 'tsv';
+        
+        $this->data = (isset($full_data_array['chart_data'])) ? $full_data_array['chart_data'] : $this->prepData->run($this->data_file,$this->file_type);
 
         $this->height= (isset($full_data_array['dimensions']['height'])) ? $full_data_array['dimensions']['height'] : 500;
         $this->width= (isset($full_data_array['dimensions']['width'])) ? $full_data_array['dimensions']['width'] : 960;
@@ -36,7 +43,7 @@ class D3_Stacked_Bar_Graph
         $this->margin_bottom = (isset($full_data_array['margins']['bottom'])) ? $full_data_array['margins']['bottom'] : 30;
         $this->margin_left = (isset($full_data_array['margins']['left'])) ? $full_data_array['margins']['left'] : 40;
         $this->margin_right = (isset($full_data_array['margins']['right'])) ? $full_data_array['margins']['right'] : 20;
-        $this->file_type = (isset($full_data_array['file_type'])) ? $full_data_array['file_type'] : 'tsv';
+
 
         $this->render_element = '';
         if(isset($full_data_array['render_element']['value'])){
@@ -68,10 +75,10 @@ class D3_Stacked_Bar_Graph
         return $this->chart_complete;
     }
 
-    function buildGraph(){
 
-
-
+    function buildGraph()
+    {
+        //@todo update with class vars
         $return ="var n = 4, // The number of series.
         m = 58; // The number of values per series.
 
@@ -171,6 +178,5 @@ class D3_Stacked_Bar_Graph
         }";
 
         return $return;
-
     }
 }

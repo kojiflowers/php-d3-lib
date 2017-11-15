@@ -1,7 +1,7 @@
 <?php namespace PhpD3;
 
-use PhpD3\Builder\D3_Pie_Chart;
-use PhpD3\Builder\D3_Bar_Graph;
+use PhpD3\Builder\PieChart;
+use PhpD3\Builder\BarGraph;
 
 // ref: https://github.com/d3/d3/wiki/Gallery
 
@@ -67,26 +67,26 @@ class Draw{
     /**
      * create simple pie chart
      *
-     * @return D3_Pie_Chart
+     * @return PieChart
      */
     private function simplePieChart(){
 
-        $pie_chart = new D3_Pie_Chart($this->data);
+        $render = new PieChart($this->data);
         
-        return $pie_chart;
+        return $render;
     }
 
     /**
      * Create a simple bar chart
      * https://bl.ocks.org/mbostock/3885304
      * 
-     * @return D3_Bar_Graph
+     * @return BarGraph
      */
     private function simpleBarGraph(){
 
-        $bar_chart = new D3_Bar_Graph($this->data);
+        $render = new BarGraph($this->data);
 
-        return $bar_chart;
+        return $render;
     }
 
     // http://bl.ocks.org/mbostock/5944371

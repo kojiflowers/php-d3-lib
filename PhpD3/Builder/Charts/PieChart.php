@@ -1,10 +1,10 @@
 <?php namespace PhpD3\Builder;
 
 /**
- * Class D3_Pie_Chart
+ * Class PieChart
  * @package PhpD3\Builder
  */
-class D3_Pie_Chart
+class PieChart extends Builder
 {
     public $chart_complete;
 
@@ -16,10 +16,14 @@ class D3_Pie_Chart
 
     function __construct($full_data_array=array())
     {
+        parent::__construct();
+
         $this->data_array = $full_data_array['chart_data'];
         $this->height=$full_data_array['dimensions']['height'];
         $this->width=$full_data_array['dimensions']['width'];
         $this->radius=$full_data_array['dimensions']['radius'];
+
+        $this->data = $this->prepData->run($this->data_array);
 
         $this->render_element = '';
         if(isset($full_data_array['render_element']['value'])){
@@ -61,7 +65,7 @@ class D3_Pie_Chart
         color = d3.scale.ordinal()
         .range(".$this->colors.");
         
-        data = ".json_encode($this->data_array).";
+        data = ".$this->data.";
         
         var vis = d3.select(\"".$this->render_element."\")
         .append(\"svg:svg\")
