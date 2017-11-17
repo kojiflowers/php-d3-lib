@@ -14,6 +14,8 @@
 </head>
 <body>
 
+<?php include_once('menu.php'); ?>
+
 <!-- the simple pie chart d3.js script credit goes to enjalot @ https://gist.github.com/enjalot/1203641 -->
 
 <h2>Welcome to the Simple Pie Chart Example</h2>

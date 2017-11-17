@@ -42,7 +42,10 @@ class DataPrep
                     $header = false;
                 }else{
                     foreach($header_array as $key => $value){
-                        $data_array[$i][$value] = $data[$key];
+                        if(isset($data[$key])){
+                            $data_array[$i][$value] = $data[$key];
+                        }
+
                     }
                     $i++;
                 }
@@ -86,6 +89,32 @@ class DataPrep
 
     public function prepArray($array){
         return json_encode($array);
+    }
+
+    public function findDataRanges($data){
+
+        $reorg = [];
+        $ranges = [];
+        $data = json_decode($data,true);
+
+        foreach($data as $key => $value){
+            foreach($value as $subkey => $subvalue){
+                $reorg[$subkey][] = $subvalue;
+            }
+
+        }
+
+        foreach($reorg as $key => $value){
+
+            asort($value);
+            $low = reset($value);
+            $high = end($value);
+
+            $ranges[$key] = array('low' => (int)$low, 'high' => (int)$high);
+        }
+
+        return $ranges;
+
     }
 
 }

@@ -36,7 +36,7 @@
 
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="../examples/js/d3.v3.min.js"></script>
 <script>
 
     var margin = {top: 80, right: 80, bottom: 80, left: 80},
@@ -65,7 +65,7 @@
         .attr("class", "graph")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.tsv("data.tsv", type, function(error, data) {
+    d3.tsv("dual_scale_data.tsv", type, function(error, data) {
         x.domain(data.map(function(d) { return d.year; }));
         y0.domain([0, d3.max(data, function(d) { return d.money; })]);
 
@@ -120,16 +120,3 @@
     }
 
 </script>
-
-data.tsv
-
-year	money	number
-2005	550	    35
-2006	600	    40
-2007	700     45
-2008	800	    60
-2009	900	    70
-2010	850	    65
-2011	880	    67
-2012	900	    70
-2013	1000	75

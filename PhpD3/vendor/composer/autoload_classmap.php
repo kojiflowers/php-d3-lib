@@ -9,7 +9,7 @@ return array(
     'PhpD3\\Builder\\BarGraph' => $baseDir . '/Builder/Graphs/BarGraph.php',
     'PhpD3\\Builder\\Builder' => $baseDir . '/Builder/Builder.php',
     'PhpD3\\Builder\\DataPrep' => $baseDir . '/Builder/DataPrep.php',
+    'PhpD3\\Builder\\DualScaleBarGraph' => $baseDir . '/Builder/Graphs/DualScaleBarGraph.php',
     'PhpD3\\Builder\\PieChart' => $baseDir . '/Builder/Charts/PieChart.php',
-    'PhpD3\\Builder\\StackedBarGraph' => $baseDir . '/Builder/Graphs/StackedBarGraph.php',
     'PhpD3\\Draw' => $baseDir . '/Draw.php',
 );

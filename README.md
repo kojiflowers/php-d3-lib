@@ -12,11 +12,9 @@ Simply put, this library creates the d3.js javascript for you based on your PHP 
 
 **Examples**
 
-So far I have 2 examples of how this library works but my goal is to have many, many more soon.
-
 See [Simple Pie Chart](http://projects.kojiflowers.com/php-d3-lib/examples/simple_pie_chart.php) (live) or view the code on github [here](https://github.com/kojiflowers/php-d3-lib/blob/v1/examples/simple_pie_chart.php).
 
-See [Simple Bar Chart](http://projects.kojiflowers.com/php-d3-lib/examples/simple_bar_chart.php) (live) or view the code on github [here](https://github.com/kojiflowers/php-d3-lib/blob/v1/examples/simple_bar_chart.php).
+See [Simple Bar Graph](http://projects.kojiflowers.com/php-d3-lib/examples/simple_bar_graph.php) (live) or view the code on github [here](https://github.com/kojiflowers/php-d3-lib/blob/v1/examples/simple_bar_graph.php).
 
 **Additional Info**
 

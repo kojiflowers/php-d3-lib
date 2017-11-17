@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Testing Bar Chart</title>
+    <title>Testing Bar Graph</title>
     <script type="text/javascript" src="js/d3.v3.min.js"></script>
 
     <style type="text/css">
@@ -32,21 +32,22 @@
     </style>
 </head>
 <body>
+<?php include_once('menu.php'); ?>
 
-<!-- this simple bar chart script credit goes to Mike Bostock @ https://bl.ocks.org/mbostock/3885304 -->
+<!-- this simple Bar Graph script credit goes to Mike Bostock @ https://bl.ocks.org/mbostock/3885304 -->
 
-<h2>Welcome to the Simple Bar Chart Example</h2>
-<p>In this example we will be exploring the Simple Bar Chart using the php-d3-lib.</p>
+<h2>Welcome to the Simple Bar Graph Example</h2>
+<p>In this example we will be exploring the Simple Bar Graph using the php-d3-lib.</p>
 
 <h4>To begin be sure to include the library</h4>
 <pre>
     include('../PhpD3/autoloader.php');
 </pre>
 
-<h3>Bar Chart 1</h3>
+<h3>Bar Graph 1</h3>
 <div id="chart"></div>
 
-<h4>Bar Chart 1 PHP Code</h4>
+<h4>Bar Graph 1 PHP Code</h4>
 <pre>
 
 $data = array(
@@ -80,7 +81,7 @@ echo $chart_render;
 include('../PhpD3/autoloader.php');
 
 $data = array(
-    'data_file'=>'chart_data.tsv',
+    'data_file'=>'bar_graph_data.tsv',
     'dimensions'=>array(
         'height'=>500,
         'width'=>960

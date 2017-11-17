@@ -1,5 +1,6 @@
 <?php namespace PhpD3;
 
+use PhpD3\Builder\DualScaleBarGraph;
 use PhpD3\Builder\PieChart;
 use PhpD3\Builder\BarGraph;
 
@@ -27,6 +28,14 @@ class Draw{
             case 'simple_bar_graph';
 
                 $built_chart = $this->simpleBarGraph();
+
+                $this->chart = $this->load($built_chart);
+
+                break;
+
+            case 'dual_scale_bar_graph';
+
+                $built_chart = $this->dualScaleBarGraph();
 
                 $this->chart = $this->load($built_chart);
 
@@ -77,7 +86,7 @@ class Draw{
     }
 
     /**
-     * Create a simple bar chart
+     * Create a simple Bar Graph
      * https://bl.ocks.org/mbostock/3885304
      * 
      * @return BarGraph
@@ -85,6 +94,19 @@ class Draw{
     private function simpleBarGraph(){
 
         $render = new BarGraph($this->data);
+
+        return $render;
+    }
+
+    /**
+     * Create a Dual Scale Bar Graph
+     * https://bl.ocks.org/mbostock/3885304
+     *
+     * @return DualScaleBarGraph
+     */
+    private function dualScaleBarGraph(){
+
+        $render = new DualScaleBarGraph($this->data);
 
         return $render;
     }
