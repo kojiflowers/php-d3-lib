@@ -31,7 +31,7 @@ class PieChart extends Builder
             $type = '#';
 
             if($full_data_array['render_element']['type'] == 'class'){
-                $type='.';
+                $type = '.';
             }
 
             $this->render_element = $type.$full_data_array['render_element']['value'];

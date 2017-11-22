@@ -45,7 +45,8 @@
 <p>In this example we will be exploring the Dual Scale Bar Graph using the php-d3-lib.</p>
 
 <h3>Dual Scale Bar Graph 1</h3>
-
+<div id="chart">
+</div>
 <?php
 
 

@@ -123,7 +123,7 @@ class DualScaleBarGraph extends Builder
         // create right yAxis
         var yAxisRight = d3.svg.axis().scale(y1).ticks(6).orient(\"".$this->yAxisRightOrient."\");
     
-        var svg = d3.select(\"body\").append(\"svg\")
+        var svg = d3.select(\"".$this->render_element."\").append(\"svg\")
             .attr(\"width\", width + margin.left + margin.right)
             .attr(\"height\", height + margin.top + margin.bottom)
             .append(\"g\")
