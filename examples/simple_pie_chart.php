@@ -146,7 +146,7 @@ echo $chart_two_render;
 <?php
 
 
-include('../phpD3/autoloader.php');
+include('../PhpD3/autoloader.php');
 
 $data = array(
     'chart_data'=>array(

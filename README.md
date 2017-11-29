@@ -16,6 +16,9 @@ See [Simple Pie Chart](http://projects.kojiflowers.com/php-d3-lib/examples/simpl
 
 See [Simple Bar Graph](http://projects.kojiflowers.com/php-d3-lib/examples/simple_bar_graph.php) (live) or view the code on github [here](https://github.com/kojiflowers/php-d3-lib/blob/v1/examples/simple_bar_graph.php).
 
+See [Dual Scale Bar Graph](http://projects.kojiflowers.com/php-d3-lib/examples/dual_scale_bar_graph.php) (live) or view the code on github [here](https://github.com/kojiflowers/php-d3-lib/blob/v1/examples/dual_scale_bar_graph.php).
+
+
 **Additional Info**
 
 Feel free to fork this project and make some cool stuff with it.  It is still early stage but I welcome help from the dev community both on the d3.js side and the PHP side.
