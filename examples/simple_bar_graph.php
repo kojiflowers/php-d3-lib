@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Testing Bar Chart</title>
-    <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+    <title>Testing Bar Graph</title>
+    <script type="text/javascript" src="js/d3.v3.min.js"></script>
 
     <style type="text/css">
         .bar {
@@ -32,53 +32,22 @@
     </style>
 </head>
 <body>
+<?php include_once('menu.php'); ?>
 
-<!-- this simple bar chart script credit goes to Mike Bostock @ https://bl.ocks.org/mbostock/3885304 -->
+<!-- this simple Bar Graph script credit goes to Mike Bostock @ https://bl.ocks.org/mbostock/3885304 -->
 
-<h2>Welcome to the Simple Bar Chart Example</h2>
-<p>In this example we will be exploring the Simple Bar Chart using the php-d3-lib.</p>
+<h2>Welcome to the Simple Bar Graph Example</h2>
+<p>In this example we will be exploring the Simple Bar Graph using the php-d3-lib.</p>
 
-<h4>To begin be sure to include the library</h4>
-<pre>
-    include('../d3-php-class/D3-class.php');
-</pre>
 
-<h3>Bar Chart 1</h3>
+<h3>Bar Graph 1</h3>
 <div id="chart"></div>
 
-<h4>Bar Chart 1 PHP Code</h4>
+<h4>Bar Graph 1 PHP Code</h4>
+<p>*renders chart into element with id="chart"</p>
 <pre>
-
-   $data = array(
-    'data_file'=>'chart_data.tsv',
-    'dimensions'=>array(
-        'height'=>500,
-        'width'=>960
-    ),
-    'render_element'=>array(
-        'value'=>'chart',
-        'type'=>'id'
-    ),
-    'axis_data'=>array(
-        'x_axis_label'=>'letter',
-        'y_axis_label'=>'frequency',
-    ),
-    'file_type'=>'tsv',
-);
-
-$chart = new D3('simple_bar_chart',$data);
-$chart_render = $chart->render();
-
-
-echo $chart_render;
-
-</pre>
-
-<?php
-
-
-include('../d3-php-class/D3-class.php');
-
+// if not included already, include the autoloader
+include('../PhpD3/autoloader.php');
 $data = array(
     'data_file'=>'chart_data.tsv',
     'dimensions'=>array(
@@ -96,7 +65,35 @@ $data = array(
     'file_type'=>'tsv',
 );
 
-$chart = new D3('simple_bar_chart',$data);
+$chart = new PhpD3\Draw('simple_bar_graph',$data);
+$chart_render = $chart->render();
+
+echo $chart_render;
+</pre>
+
+<?php
+
+
+include('../PhpD3/autoloader.php');
+
+$data = array(
+    'data_file'=>'bar_graph_data.tsv',
+    'dimensions'=>array(
+        'height'=>500,
+        'width'=>960
+    ),
+    'render_element'=>array(
+        'value'=>'chart',
+        'type'=>'id'
+    ),
+    'axis_data'=>array(
+        'x_axis_label'=>'letter',
+        'y_axis_label'=>'frequency',
+    ),
+    'file_type'=>'tsv',
+);
+
+$chart = new PhpD3\Draw('simple_bar_graph',$data);
 $chart_render = $chart->render();
 
 

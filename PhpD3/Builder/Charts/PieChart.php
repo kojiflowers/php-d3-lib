@@ -1,20 +1,29 @@
-<?php
+<?php namespace PhpD3\Builder;
 
-class D3_Pie_Chart
+/**
+ * Class PieChart
+ * @package PhpD3\Builder
+ */
+class PieChart extends Builder
 {
-    
-    private $data_array = array();
-    private $height = '';
-    private $width = '';
-    private $radius = '';
     public $chart_complete;
+
+    protected $render_element;
+    protected $data_array = array();
+    protected $height = '';
+    protected $width = '';
+    protected $radius = '';
 
     function __construct($full_data_array=array())
     {
+        parent::__construct();
+
         $this->data_array = $full_data_array['chart_data'];
         $this->height=$full_data_array['dimensions']['height'];
         $this->width=$full_data_array['dimensions']['width'];
         $this->radius=$full_data_array['dimensions']['radius'];
+
+        $this->data = $this->prepData->run($this->data_array);
 
         $this->render_element = '';
         if(isset($full_data_array['render_element']['value'])){
@@ -22,7 +31,7 @@ class D3_Pie_Chart
             $type = '#';
 
             if($full_data_array['render_element']['type'] == 'class'){
-                $type='.';
+                $type = '.';
             }
 
             $this->render_element = $type.$full_data_array['render_element']['value'];
@@ -36,7 +45,7 @@ class D3_Pie_Chart
             $this->colors = '["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]';
         }
         
-        $this->chart_complete = $this->build_simple_pie_chart();
+        $this->chart_complete = $this->buildChart();
 
 
     }
@@ -46,21 +55,20 @@ class D3_Pie_Chart
         return $this->chart_complete;
     }
 
-    function build_simple_pie_chart()
+    function buildChart()
     {
-
         //example from https://gist.github.com/enjalot/1203641
-
 
         $return ="var w = ".$this->width.",
         h = ".$this->height.",
         r = ".$this->radius.",
         color = d3.scale.ordinal()
-            .range(".$this->colors.");
+        .range(".$this->colors.");
         
-        data = ".json_encode($this->data_array).";
+        data = ".$this->data.";
         
-        var vis = d3.select(\"".$this->render_element."\").append(\"svg:svg\")
+        var vis = d3.select(\"".$this->render_element."\")
+        .append(\"svg:svg\")
         .data([data])
         .attr(\"width\", w)
         .attr(\"height\", h)
