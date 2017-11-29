@@ -47,45 +47,6 @@
 <h3>Dual Scale Bar Graph 1</h3>
 <div id="chart">
 </div>
-<?php
-
-
-include('../PhpD3/autoloader.php');
-
-$data = array(
-    'data_file'=>'dual_scale_data.tsv',
-    'dimensions'=>array(
-        'height'=>500,
-        'width'=>950
-    ),
-    'render_element'=>array(
-        'value'=>'chart',
-        'type'=>'id'
-    ),
-    'axis_data'=>array(
-        'xAxis' =>[
-            'label' => 'Testing 1',
-            'key' => 'testing1'
-        ],
-        'yAxis' =>[
-            'label' => 'Testing 2',
-            'key' => 'testing2'
-        ],
-        'y2Axis' =>[
-            'label' => 'Num',
-            'key' => 'num'
-        ],
-    ),
-    'file_type'=>'tsv',
-);
-
-$chart = new PhpD3\Draw('dual_scale_bar_graph',$data);
-$chart_render = $chart->render();
-
-
-echo $chart_render;
-
-?>
 
 <h4>Dual Scale Bar Graph 1 PHP Code</h4>
 <p>*renders chart into element with id="chart"</p>
@@ -125,3 +86,43 @@ $chart_render = $chart->render();
 
 echo $chart_render;
 </pre>
+
+<?php
+
+
+include('../PhpD3/autoloader.php');
+
+$data = array(
+    'data_file'=>'dual_scale_data.tsv',
+    'dimensions'=>array(
+        'height'=>500,
+        'width'=>950
+    ),
+    'render_element'=>array(
+        'value'=>'chart',
+        'type'=>'id'
+    ),
+    'axis_data'=>array(
+        'xAxis' =>[
+            'label' => 'Testing 1',
+            'key' => 'testing1'
+        ],
+        'yAxis' =>[
+            'label' => 'Testing 2',
+            'key' => 'testing2'
+        ],
+        'y2Axis' =>[
+            'label' => 'Num',
+            'key' => 'num'
+        ],
+    ),
+    'file_type'=>'tsv',
+);
+
+$chart = new PhpD3\Draw('dual_scale_bar_graph',$data);
+$chart_render = $chart->render();
+
+
+echo $chart_render;
+
+?>

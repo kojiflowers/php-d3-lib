@@ -81,7 +81,7 @@ $data = array(
 $chart = new PhpD3\Draw('simple_pie_chart',$data);
 $chart_render = $chart->render();
 
-echo $chart;
+echo $chart_render;
 
 </pre>
 
@@ -194,7 +194,7 @@ $data = array(
 $chart = new PhpD3\Draw('simple_pie_chart',$data);
 $chart_render = $chart->render();
 
-echo $chart;
+echo $chart_render;
 
 $data_two = array(
     'chart_data'=>array(
