@@ -88,6 +88,7 @@ echo $chart_render;
 ?>
 
 <h4>Dual Scale Bar Graph 1 PHP Code</h4>
+<p>*renders chart into element with id="chart"</p>
 <pre>
 // if not already included, include the autoloader
 include('../PhpD3/autoloader.php');
@@ -122,7 +123,5 @@ $data = array(
 $chart = new PhpD3\Draw('dual_scale_bar_graph',$data);
 $chart_render = $chart->render();
 
-
 echo $chart_render;
-
 </pre>

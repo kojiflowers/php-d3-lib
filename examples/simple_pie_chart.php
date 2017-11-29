@@ -23,14 +23,17 @@
 
 <h4>To begin be sure to include the library</h4>
 <pre>
-    include('../PhpD3/autoloader.php');
+
 </pre>
 
 <h3>Pie Chart 1</h3>
 <div id="chart"></div>
 
 <h4>Pie Chart 1 PHP Code</h4>
+<p>*renders chart into element with id="chart"</p>
 <pre>
+// if not already included, include the autoloader
+include('../PhpD3/autoloader.php');
 
 $data = array(
     'chart_data'=>array(
@@ -87,7 +90,11 @@ echo $chart;
 <div id="chart_2"></div>
 
 <h4>Pie Chart 2 PHP Code</h4>
+<p>*renders chart into element with id="chart_2"</p>
 <pre>
+// if not already included, include the autoloader
+include('../PhpD3/autoloader.php');
+
 $data_two = array(
     'chart_data'=>array(
         array(

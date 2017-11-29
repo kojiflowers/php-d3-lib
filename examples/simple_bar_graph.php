@@ -39,17 +39,15 @@
 <h2>Welcome to the Simple Bar Graph Example</h2>
 <p>In this example we will be exploring the Simple Bar Graph using the php-d3-lib.</p>
 
-<h4>To begin be sure to include the library</h4>
-<pre>
-    include('../PhpD3/autoloader.php');
-</pre>
 
 <h3>Bar Graph 1</h3>
 <div id="chart"></div>
 
 <h4>Bar Graph 1 PHP Code</h4>
+<p>*renders chart into element with id="chart"</p>
 <pre>
-
+// if not included already, include the autoloader
+include('../PhpD3/autoloader.php');
 $data = array(
     'data_file'=>'chart_data.tsv',
     'dimensions'=>array(
@@ -70,9 +68,7 @@ $data = array(
 $chart = new PhpD3\Draw('simple_bar_graph',$data);
 $chart_render = $chart->render();
 
-
 echo $chart_render;
-
 </pre>
 
 <?php
