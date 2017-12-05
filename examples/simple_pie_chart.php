@@ -3,12 +3,16 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Testing Pie Chart</title>
-    <script type="text/javascript" src="js/d3.v3.min.js"></script>
+    <script type="text/javascript" src="js/d3.v4.min.js"></script>
 
     <style type="text/css">
-        .slice text {
-            font-size: 12pt;
-            font-family: "Times New Roman";
+        .arc text {
+            font: 10px sans-serif;
+            text-anchor: middle;
+        }
+
+        .arc path {
+            stroke: #fff;
         }
     </style>
 </head>

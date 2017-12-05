@@ -55,53 +55,49 @@ class PieChart extends Builder
         return $this->chart_complete;
     }
 
-    function buildChart()
-    {
-        //example from https://gist.github.com/enjalot/1203641
-
-        $return ="var w = ".$this->width.",
-        h = ".$this->height.",
-        r = ".$this->radius.",
-        color = d3.scale.ordinal()
-        .range(".$this->colors.");
+    function buildChart(){
+        $return ="
         
-        data = ".$this->data.";
+        var  data = ".$this->data.";
         
-        var vis = d3.select(\"".$this->render_element."\")
-        .append(\"svg:svg\")
-        .data([data])
-        .attr(\"width\", w)
-        .attr(\"height\", h)
-        .append(\"svg:g\")
-        .attr(\"transform\", \"translate(\" + r + \",\" + r + \")\")
+        var width = ".$this->width.",
+            height = ".$this->height.",
+            radius = Math.min(width, height) / 2;
         
-        var arc = d3.svg.arc()
-        .outerRadius(r);
+        var color = d3.scaleOrdinal()
+            .range(".$this->colors.");
         
-         var pie = d3.layout.pie()
-        .value(function(d) { return d.value; });
+        var arc = d3.arc()
+            .outerRadius(radius - 10)
+            .innerRadius(0);
         
-         var arcs = vis.selectAll(\"g.slice\")
-        .data(pie)
-        .enter()
-        .append(\"svg:g\")
-        .attr(\"class\", \"slice\");
+        var labelArc = d3.arc()
+            .outerRadius(radius - 40)
+            .innerRadius(radius - 40);
         
-         arcs.append(\"svg:path\")
-        .attr(\"fill\", function(d, i) { return color(i); } )
-        .attr(\"d\", arc);
+        var pie = d3.pie()
+            .sort(null)
+            .value(function(d) { return d.value; });
         
-         arcs.append(\"svg:text\")
-        .attr(\"transform\", function(d) {
-        d.innerRadius = 0;
-        d.outerRadius = r;
-        return \"translate(\" + arc.centroid(d) + \")\";
+        var svg = d3.select(\"".$this->render_element."\").append(\"svg\")
+            .attr(\"width\", width)
+            .attr(\"height\", height)
+          .append(\"g\")
+            .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\");
         
-        })
+          var g = svg.selectAll(\".arc\")
+              .data(pie(data))
+            .enter().append(\"g\")
+              .attr(\"class\", \"arc\");
         
-        .attr(\"text-anchor\", \"middle\")
-        .text(function(d, i) { return data[i].label; });
-        ";
+          g.append(\"path\")
+              .attr(\"d\", arc)
+              .attr(\"fill\", function(d, i) { return color(i); } )
+        
+          g.append(\"text\")
+              .attr(\"transform\", function(d) { return \"translate(\" + labelArc.centroid(d) + \")\"; })
+              .attr(\"dy\", \".35em\")
+              .text(function(d, i) { return data[i].label; });";
 
         return $return;
     }
