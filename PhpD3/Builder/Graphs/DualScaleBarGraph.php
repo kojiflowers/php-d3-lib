@@ -106,22 +106,21 @@ class DualScaleBarGraph extends Builder
         height = ".$this->height." - margin.top - margin.bottom;";
 
         $return .= "
-        var x = d3.scale.ordinal()
-            .rangeRoundBands([0, width], .1);
+        var x = d3.scaleBand().range([0, width]).paddingInner(0.25).paddingOuter(0.25);
     
-        var y0 = d3.scale.linear().domain([".$low_y_axis.",".$high_y_axis."]).range([height, 0]),
-            y1 = d3.scale.linear().domain([".$low_y2_axis.",".$high_y2_axis."]).range([height, 0]);
+        var y0 = d3.scaleLinear().domain([".$low_y_axis.",".$high_y_axis."]).range([height, 0]),
+            y1 = d3.scaleLinear().domain([".$low_y2_axis.",".$high_y2_axis."]).range([height, 0]);
     
-        var xAxis = d3.svg.axis()
-            .scale(x)
-            .orient(\"".$this->xAxisOrient."\");
+        var xAxis = d3.axisBottom(x);
             
             var data = ".$this->data."
     
         // create left yAxis
-        var yAxisLeft = d3.svg.axis().scale(y0).ticks(4).orient(\"".$this->yAxisLeftOrient."\");
+        var yAxisLeft = d3.axisLeft(y0);
         // create right yAxis
-        var yAxisRight = d3.svg.axis().scale(y1).ticks(6).orient(\"".$this->yAxisRightOrient."\");
+        var yAxisRight = d3.axisRight(y1);
+        
+        var max = d3.max(data, function(d) { return d.".$this->y_axis_key."; });
     
         var svg = d3.select(\"".$this->render_element."\").append(\"svg\")
             .attr(\"width\", width + margin.left + margin.right)
@@ -131,7 +130,7 @@ class DualScaleBarGraph extends Builder
             .attr(\"transform\", \"translate(\" + margin.left + \",\" + margin.top + \")\");
     
             x.domain(data.map(function(d) { return d.".$this->x_axis_key."; }));
-            y0.domain([0, d3.max(data, function(d) { return d.".$this->y_axis_key."; })]);
+            y0.domain([0, max]);
     
             svg.append(\"g\")
                 .attr(\"class\", \"x axis\")
@@ -165,14 +164,14 @@ class DualScaleBarGraph extends Builder
             bars.append(\"rect\")
                 .attr(\"class\", \"bar1\")
                 .attr(\"x\", function(d) { return x(d.".$this->x_axis_key."); })
-                .attr(\"width\", x.rangeBand()/2)
+                .attr(\"width\", x.bandwidth()/2)
                 .attr(\"y\", function(d) { return y0(d.".$this->y_axis_key."); })
                 .attr(\"height\", function(d,i,j) { return height - y0(d.".$this->y_axis_key."); });
     
             bars.append(\"rect\")
                 .attr(\"class\", \"bar2\")
-                .attr(\"x\", function(d) { return x(d.".$this->x_axis_key.") + x.rangeBand()/2; })
-                .attr(\"width\", x.rangeBand() / 2)
+                .attr(\"x\", function(d) { return x(d.".$this->x_axis_key.") + x.bandwidth()/2; })
+                .attr(\"width\", x.bandwidth() / 2)
                 .attr(\"y\", function(d) { return y1(d.".$this->y_axis2_key."); })
                 .attr(\"height\", function(d,i,j) { return height - y1(d.".$this->y_axis2_key."); });
     

@@ -75,72 +75,59 @@ class BarGraph extends Builder
         return $this->chart_complete;
     }
 
+    function buildGraph(){
 
-    function buildGraph()
-    {
-        //example from https://gist.github.com/enjalot/1203641
+        $return ="var data = ".$this->data.";";
 
-       $return = "
+        $return .="
+       
+        // set the dimensions and margins of the graph
         var margin = {top: ".$this->margin_top.", right: ".$this->margin_right.", bottom: ".$this->margin_bottom.", left: ".$this->margin_left."},
         width = ".$this->width." - margin.left - margin.right,
-        height = ".$this->height." - margin.top - margin.bottom;";
-       $return .= "var x = d3.scale.ordinal()
-       .rangeRoundBands([0, width], .1);";
-
-       $return .= "var y = d3.scale
-       .linear()
-       .range([height, 0]);";
-
-       $return .= "var xAxis = d3.svg.axis()
-       .scale(x)
-       .orient(\"".$this->xAxisOrient."\");";
-
-       $return .= "var yAxis = d3.svg.axis()
-       .scale(y).orient(\"".$this->yAxisOrient."\")
-       .ticks($this->ticks, \"%\");";
-
-       $return .="var data = ".$this->data.";";
-
-       $return .=" var svg = d3.select(\"".$this->render_element."\").append(\"svg\")
+        height = ".$this->height." - margin.top - margin.bottom;
+        
+        // set the ranges
+        var x = d3.scaleBand().range([0, width]).padding(0.1);
+        var y = d3.scaleLinear().range([height, 0]);
+                  
+        // append the svg object to the body of the page
+        // append a 'group' element to 'svg'
+        // moves the 'group' element to the top left margin
+        var svg = d3.select(\"".$this->render_element."\").append(\"svg\")
             .attr(\"width\", width + margin.left + margin.right)
             .attr(\"height\", height + margin.top + margin.bottom)
-            .append(\"g\")
-            .attr(\"transform\", \"translate(\" + margin.left + \",\" + margin.top + \")\");";
-
-        $return.="
+          .append(\"g\")
+            .attr(\"transform\", 
+                  \"translate(\" + margin.left + \",\" + margin.top + \")\");      
         
+         function type(d) {
+          d.".$this->y_axis_label." = +d.".$this->y_axis_label.";
+          return d;
+            };
+        
+          // Scale the range of the data in the domains
           x.domain(data.map(function(d) { return d.".$this->x_axis_label."; }));
           y.domain([0, d3.max(data, function(d) { return d.".$this->y_axis_label."; })]);
         
-          svg.append(\"g\")
-              .attr(\"class\", \"x axis\")
-              .attr(\"transform\", \"translate(0,\" + height + \")\")
-              .call(xAxis);
-        
-          svg.append(\"g\")
-              .attr(\"class\", \"y axis\")
-              .call(yAxis)
-              .append(\"text\")
-              .attr(\"transform\", \"rotate(-90)\")
-              .attr(\"y\", 6)
-              .attr(\"dy\", \".71em\")
-              .style(\"text-anchor\", \"end\")
-              .text(\"".$this->y_axis_label."\");
-        
+          // append the rectangles for the bar chart
           svg.selectAll(\".bar\")
-              .data(data)
-              .enter().append(\"rect\")
-              .attr(\"class\", \"bar\")
-              .attr(\"x\", function(d) { return x(d.".$this->x_axis_label."); })
-              .attr(\"width\", x.rangeBand())
-              .attr(\"y\", function(d) { return y(d.".$this->y_axis_label."); })
-              .attr(\"height\", function(d) { return height - y(d.".$this->y_axis_label."); });
+            .data(data)
+            .enter().append(\"rect\")
+            .attr(\"class\", \"bar\")
+            .attr(\"x\", function(d) { return x(d.".$this->x_axis_label."); })
+            .attr(\"width\", x.bandwidth())
+            .attr(\"y\", function(d) { return y(d.".$this->y_axis_label."); })
+            .attr(\"height\", function(d) { return height - y(d.".$this->y_axis_label."); });
         
+          // add the x Axis
+          svg.append(\"g\")
+            .attr(\"transform\", \"translate(0,\" + height + \")\")
+            .call(d3.axisBottom(x));
         
-        function type(d) {
-          d.".$this->y_axis_label." = +d.".$this->y_axis_label.";
-          return d;
-        }";
+          // add the y Axis
+          svg.append(\"g\")
+              .call(d3.axisLeft(y));
+        ";
 
         return $return;
     }

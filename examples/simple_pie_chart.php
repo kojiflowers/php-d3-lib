@@ -7,7 +7,7 @@
 
     <style type="text/css">
         .arc text {
-            font: 10px sans-serif;
+            font: 15px sans-serif;
             text-anchor: middle;
         }
 
