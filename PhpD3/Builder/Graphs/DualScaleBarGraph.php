@@ -133,9 +133,14 @@ class DualScaleBarGraph extends Builder
             y0.domain([0, max]);
     
             svg.append(\"g\")
-                .attr(\"class\", \"x axis\")
+                .attr(\"class\", \"x axis axis--x\")
                 .attr(\"transform\", \"translate(0,\" + height + \")\")
-                .call(xAxis);
+                .call(xAxis)
+                .selectAll(\"text\")
+                .style(\"text-anchor\", \"end\")
+                .attr(\"dx\", \"-.8em\")
+                .attr(\"dy\", \".15em\")
+                .attr(\"transform\", \"rotate(-65)\");
     
             svg.append(\"g\")
                 .attr(\"class\", \"y axis axisLeft\")
@@ -144,7 +149,6 @@ class DualScaleBarGraph extends Builder
                 .append(\"text\")
                 .attr(\"y\", 6)
                 .attr(\"dy\", \"-2em\")
-                .style(\"text-anchor\", \"end\")
                 .style(\"text-anchor\", \"end\")
                 .text(\"".$this->y_axis_label."\");
     

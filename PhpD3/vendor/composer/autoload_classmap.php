@@ -10,6 +10,7 @@ return array(
     'PhpD3\\Builder\\Builder' => $baseDir . '/Builder/Builder.php',
     'PhpD3\\Builder\\DataPrep' => $baseDir . '/Builder/DataPrep.php',
     'PhpD3\\Builder\\DualScaleBarGraph' => $baseDir . '/Builder/Graphs/DualScaleBarGraph.php',
+    'PhpD3\\Builder\\LineGraph' => $baseDir . '/Builder/Graphs/LineGraph.php',
     'PhpD3\\Builder\\PieChart' => $baseDir . '/Builder/Charts/PieChart.php',
     'PhpD3\\Draw' => $baseDir . '/Draw.php',
 );

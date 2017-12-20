@@ -1,6 +1,7 @@
 <?php namespace PhpD3;
 
 use PhpD3\Builder\DualScaleBarGraph;
+use PhpD3\Builder\LineGraph;
 use PhpD3\Builder\PieChart;
 use PhpD3\Builder\BarGraph;
 
@@ -41,6 +42,14 @@ class Draw{
 
                 break;
 
+            case 'simple_line_graph';
+
+                $built_chart = $this->simpleLineGraph();
+
+                $this->chart = $this->load($built_chart);
+
+                break;
+    
             }
         }
 
@@ -111,9 +120,17 @@ class Draw{
         return $render;
     }
 
-    // http://bl.ocks.org/mbostock/5944371
-    private function bi_level_partition(){
+    /**
+     * Create a simple Line Graph
+     * https://bl.ocks.org/mbostock/3885304
+     *
+     * @return LineGraph
+     */
+    private function simpleLineGraph(){
 
+        $render = new LineGraph($this->data);
+
+        return $render;
     }
 
 

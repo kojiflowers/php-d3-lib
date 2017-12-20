@@ -2,23 +2,27 @@
 <html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Testing Bar Graph</title>
+    <title>Testing Line Graph</title>
     <script type="text/javascript" src="js/d3.v4.min.js"></script>
 
     <style type="text/css">
-        .bar {
-            fill: steelblue;
+        .line {
+            fill: none;
+            stroke: #ffab00;
+            stroke-width: 3;
         }
 
-        .bar:hover {
-            fill: brown;
-        }
-
-        .axis {
+        .axis{
             font: 10px sans-serif;
         }
 
+        .axis-label{
+            font: 12px sans-serif;
+        }
 
+        .circle {
+            fill: steelblue;
+        }
 
         .axis path,
         .axis line {
@@ -27,21 +31,38 @@
             shape-rendering: crispEdges;
         }
 
+        .x.axis path {
+            display: none;
+        }
+
+        div.tooltip {
+            position: absolute;
+            text-align: center;
+            width: 60px;
+            height: 28px;
+            padding: 2px;
+            font: 12px sans-serif;
+            background: lightsteelblue;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
     </style>
 </head>
 <body>
 <?php include_once('menu.php'); ?>
 
-<!-- this simple Bar Graph script credit goes to Mike Bostock @ https://bl.ocks.org/mbostock/3885304 -->
+<!-- this simple Line Graph script credit goes to Mike Bostock @ https://bl.ocks.org/mbostock/3885304 -->
 
-<h2>Welcome to the Simple Bar Graph Example</h2>
-<p>In this example we will be exploring the Simple Bar Graph using the php-d3-lib.</p>
+<h2>Welcome to the Simple Line Graph Example</h2>
+<p>In this example we will be exploring the Simple Line Graph using the php-d3-lib.</p>
 
 
-<h3>Bar Graph 1</h3>
+<h3>Line Graph 1</h3>
 <div id="chart"></div>
 
-<h4>Bar Graph 1 PHP Code</h4>
+<h4>Line Graph 1 PHP Code</h4>
 <p>*renders chart into element with id="chart"</p>
 <pre>
 // if not included already, include the autoloader
@@ -51,7 +72,7 @@ $data = array(
     'data_file'=>'graph_data.tsv',
     'dimensions'=>array(
         'height'=>500,
-        'width'=>960
+        'width'=>950
     ),
     'render_element'=>array(
         'value'=>'chart',
@@ -64,7 +85,7 @@ $data = array(
     'file_type'=>'tsv',
 );
 
-$chart = new PhpD3\Draw('simple_bar_graph',$data);
+$chart = new PhpD3\Draw('simple_line_graph',$data);
 $chart_render = $chart->render();
 </pre>
 
@@ -77,7 +98,7 @@ $data = array(
     'data_file'=>'graph_data.tsv',
     'dimensions'=>array(
         'height'=>500,
-        'width'=>960
+        'width'=>950
     ),
     'render_element'=>array(
         'value'=>'chart',
@@ -90,7 +111,7 @@ $data = array(
     'file_type'=>'tsv',
 );
 
-$chart = new PhpD3\Draw('simple_bar_graph',$data);
+$chart = new PhpD3\Draw('simple_line_graph',$data);
 $chart_render = $chart->render();
 
 

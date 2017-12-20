@@ -30,9 +30,6 @@
             fill: orange;
         }
 
-        .x.axis path {
-            display: none;
-        }
 
     </style>
 </head>

@@ -122,7 +122,12 @@ class BarGraph extends Builder
           // add the x Axis
           svg.append(\"g\")
             .attr(\"transform\", \"translate(0,\" + height + \")\")
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x))
+            .selectAll(\"text\")
+            .style(\"text-anchor\", \"end\")
+            .attr(\"dx\", \"-.8em\")
+            .attr(\"dy\", \".15em\")
+            .attr(\"transform\", \"rotate(-65)\");
         
           // add the y Axis
           svg.append(\"g\")
