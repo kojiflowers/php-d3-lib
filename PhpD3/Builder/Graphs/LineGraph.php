@@ -162,7 +162,7 @@ class LineGraph extends Builder
             .style(\"top\", (d3.event.pageY - 28) + \"px\");
         })
         .on(\"mouseout\", function(d) {
-        div.transition()
+            div.transition()
             .duration(500)
             .style(\"opacity\", 0);
         });

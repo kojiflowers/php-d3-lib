@@ -94,44 +94,43 @@ class BarGraph extends Builder
         // append a 'group' element to 'svg'
         // moves the 'group' element to the top left margin
         var svg = d3.select(\"".$this->render_element."\").append(\"svg\")
-            .attr(\"width\", width + margin.left + margin.right)
-            .attr(\"height\", height + margin.top + margin.bottom)
-          .append(\"g\")
-            .attr(\"transform\", 
-                  \"translate(\" + margin.left + \",\" + margin.top + \")\");      
+        .attr(\"width\", width + margin.left + margin.right)
+        .attr(\"height\", height + margin.top + margin.bottom)
+        .append(\"g\")
+        .attr(\"transform\", 
+              \"translate(\" + margin.left + \",\" + margin.top + \")\");      
         
-         function type(d) {
-          d.".$this->y_axis_label." = +d.".$this->y_axis_label.";
-          return d;
-            };
+        function type(d) {
+            d.".$this->y_axis_label." = +d.".$this->y_axis_label.";
+            return d;
+        };
         
-          // Scale the range of the data in the domains
-          x.domain(data.map(function(d) { return d.".$this->x_axis_label."; }));
-          y.domain([0, d3.max(data, function(d) { return d.".$this->y_axis_label."; })]);
+        // Scale the range of the data in the domains
+        x.domain(data.map(function(d) { return d.".$this->x_axis_label."; }));
+        y.domain([0, d3.max(data, function(d) { return d.".$this->y_axis_label."; })]);
         
-          // append the rectangles for the bar chart
-          svg.selectAll(\".bar\")
-            .data(data)
-            .enter().append(\"rect\")
-            .attr(\"class\", \"bar\")
-            .attr(\"x\", function(d) { return x(d.".$this->x_axis_label."); })
-            .attr(\"width\", x.bandwidth())
-            .attr(\"y\", function(d) { return y(d.".$this->y_axis_label."); })
-            .attr(\"height\", function(d) { return height - y(d.".$this->y_axis_label."); });
+        // append the rectangles for the bar chart
+        svg.selectAll(\".bar\")
+        .data(data)
+        .enter().append(\"rect\")
+        .attr(\"class\", \"bar\")
+        .attr(\"x\", function(d) { return x(d.".$this->x_axis_label."); })
+        .attr(\"width\", x.bandwidth())
+        .attr(\"y\", function(d) { return y(d.".$this->y_axis_label."); })
+        .attr(\"height\", function(d) { return height - y(d.".$this->y_axis_label."); });
         
-          // add the x Axis
-          svg.append(\"g\")
-            .attr(\"transform\", \"translate(0,\" + height + \")\")
-            .call(d3.axisBottom(x))
-            .selectAll(\"text\")
-            .style(\"text-anchor\", \"end\")
-            .attr(\"dx\", \"-.8em\")
-            .attr(\"dy\", \".15em\")
-            .attr(\"transform\", \"rotate(-65)\");
+        // add the x Axis
+        svg.append(\"g\")
+        .attr(\"transform\", \"translate(0,\" + height + \")\")
+        .call(d3.axisBottom(x))
+        .selectAll(\"text\")
+        .style(\"text-anchor\", \"end\")
+        .attr(\"dx\", \"-.8em\")
+        .attr(\"dy\", \".15em\")
+        .attr(\"transform\", \"rotate(-65)\");
         
-          // add the y Axis
-          svg.append(\"g\")
-              .call(d3.axisLeft(y));
+        // add the y Axis
+        svg.append(\"g\").call(d3.axisLeft(y));
         ";
 
         return $return;

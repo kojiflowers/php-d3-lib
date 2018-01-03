@@ -99,7 +99,6 @@ class DualScaleBarGraph extends Builder
         $high_y_axis = $this->ranges[$this->y_axis_key]['high']+100;
         $high_y2_axis = $this->ranges[$this->y_axis2_key]['high']+5;
 
-        //@todo update with class vars
         $return = "
         var margin = {top: ".$this->margin_top.", right: ".$this->margin_right.", bottom: ".$this->margin_bottom.", left: ".$this->margin_left."},
         width = ".$this->width." - margin.left - margin.right,
@@ -113,7 +112,7 @@ class DualScaleBarGraph extends Builder
     
         var xAxis = d3.axisBottom(x);
             
-            var data = ".$this->data."
+        var data = ".$this->data."
     
         // create left yAxis
         var yAxisLeft = d3.axisLeft(y0);
@@ -123,64 +122,63 @@ class DualScaleBarGraph extends Builder
         var max = d3.max(data, function(d) { return d.".$this->y_axis_key."; });
     
         var svg = d3.select(\"".$this->render_element."\").append(\"svg\")
-            .attr(\"width\", width + margin.left + margin.right)
-            .attr(\"height\", height + margin.top + margin.bottom)
-            .append(\"g\")
-            .attr(\"class\", \"graph\")
-            .attr(\"transform\", \"translate(\" + margin.left + \",\" + margin.top + \")\");
+        .attr(\"width\", width + margin.left + margin.right)
+        .attr(\"height\", height + margin.top + margin.bottom)
+        .append(\"g\")
+        .attr(\"class\", \"graph\")
+        .attr(\"transform\", \"translate(\" + margin.left + \",\" + margin.top + \")\");
     
-            x.domain(data.map(function(d) { return d.".$this->x_axis_key."; }));
-            y0.domain([0, max]);
+        x.domain(data.map(function(d) { return d.".$this->x_axis_key."; }));
+        y0.domain([0, max]);
     
-            svg.append(\"g\")
-                .attr(\"class\", \"x axis axis--x\")
-                .attr(\"transform\", \"translate(0,\" + height + \")\")
-                .call(xAxis)
-                .selectAll(\"text\")
-                .style(\"text-anchor\", \"end\")
-                .attr(\"dx\", \"-.8em\")
-                .attr(\"dy\", \".15em\")
-                .attr(\"transform\", \"rotate(-65)\");
-    
-            svg.append(\"g\")
-                .attr(\"class\", \"y axis axisLeft\")
-                .attr(\"transform\", \"translate(0,0)\")
-                .call(yAxisLeft)
-                .append(\"text\")
-                .attr(\"y\", 6)
-                .attr(\"dy\", \"-2em\")
-                .style(\"text-anchor\", \"end\")
-                .text(\"".$this->y_axis_label."\");
-    
-            svg.append(\"g\")
-                .attr(\"class\", \"y axis axisRight\")
-                .attr(\"transform\", \"translate(\" + (width) + \",0)\")
-                .call(yAxisRight)
-                .append(\"text\")
-                .attr(\"y\", 6)
-                .attr(\"dy\", \"-2em\")
-                .attr(\"dx\", \"2em\")
-                .style(\"text-anchor\", \"end\")
-                .text(\"".$this->y_axis2_label."\");
-    
-            bars = svg.selectAll(\".bar\").data(data).enter();
-    
-            bars.append(\"rect\")
-                .attr(\"class\", \"bar1\")
-                .attr(\"x\", function(d) { return x(d.".$this->x_axis_key."); })
-                .attr(\"width\", x.bandwidth()/2)
-                .attr(\"y\", function(d) { return y0(d.".$this->y_axis_key."); })
-                .attr(\"height\", function(d,i,j) { return height - y0(d.".$this->y_axis_key."); });
-    
-            bars.append(\"rect\")
-                .attr(\"class\", \"bar2\")
-                .attr(\"x\", function(d) { return x(d.".$this->x_axis_key.") + x.bandwidth()/2; })
-                .attr(\"width\", x.bandwidth() / 2)
-                .attr(\"y\", function(d) { return y1(d.".$this->y_axis2_key."); })
-                .attr(\"height\", function(d,i,j) { return height - y1(d.".$this->y_axis2_key."); });
+        svg.append(\"g\")
+        .attr(\"class\", \"x axis axis--x\")
+        .attr(\"transform\", \"translate(0,\" + height + \")\")
+        .call(xAxis)
+        .selectAll(\"text\")
+        .style(\"text-anchor\", \"end\")
+        .attr(\"dx\", \"-.8em\")
+        .attr(\"dy\", \".15em\")
+        .attr(\"transform\", \"rotate(-65)\");
+        
+        svg.append(\"g\")
+        .attr(\"class\", \"y axis axisLeft\")
+        .attr(\"transform\", \"translate(0,0)\")
+        .call(yAxisLeft)
+        .append(\"text\")
+        .attr(\"y\", 6)
+        .attr(\"dy\", \"-2em\")
+        .style(\"text-anchor\", \"end\")
+        .text(\"".$this->y_axis_label."\");
+        
+        svg.append(\"g\")
+        .attr(\"class\", \"y axis axisRight\")
+        .attr(\"transform\", \"translate(\" + (width) + \",0)\")
+        .call(yAxisRight)
+        .append(\"text\")
+        .attr(\"y\", 6)
+        .attr(\"dy\", \"-2em\")
+        .attr(\"dx\", \"2em\")
+        .style(\"text-anchor\", \"end\")
+        .text(\"".$this->y_axis2_label."\");
+
+        bars = svg.selectAll(\".bar\").data(data).enter();
+
+        bars.append(\"rect\")
+            .attr(\"class\", \"bar1\")
+            .attr(\"x\", function(d) { return x(d.".$this->x_axis_key."); })
+            .attr(\"width\", x.bandwidth()/2)
+            .attr(\"y\", function(d) { return y0(d.".$this->y_axis_key."); })
+            .attr(\"height\", function(d,i,j) { return height - y0(d.".$this->y_axis_key."); });
+
+        bars.append(\"rect\")
+            .attr(\"class\", \"bar2\")
+            .attr(\"x\", function(d) { return x(d.".$this->x_axis_key.") + x.bandwidth()/2; })
+            .attr(\"width\", x.bandwidth() / 2)
+            .attr(\"y\", function(d) { return y1(d.".$this->y_axis2_key."); })
+            .attr(\"height\", function(d,i,j) { return height - y1(d.".$this->y_axis2_key."); });
     
         
-    
         function type(d) {
             d.money = +d.money;
             return d;
