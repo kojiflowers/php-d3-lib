@@ -44,7 +44,7 @@ class DualScaleBarGraph extends Builder
         $this->data = (isset($full_data_array['chart_data'])) ? $full_data_array['chart_data'] : $this->prepData->run($this->data_file,$this->file_type);
         $this->ranges = $this->prepData->findDataRanges($this->data);
 
-
+        $this->autosize = (isset($full_data_array['autosize'])) ? $full_data_array['autosize'] : false;
 
         $this->height= (isset($full_data_array['dimensions']['height'])) ? $full_data_array['dimensions']['height'] : 500;
         $this->width= (isset($full_data_array['dimensions']['width'])) ? $full_data_array['dimensions']['width'] : 960;
@@ -70,6 +70,7 @@ class DualScaleBarGraph extends Builder
             }
 
             $this->render_element = $type.$full_data_array['render_element']['value'];
+            $this->render_element_id = $full_data_array['render_element']['value'];
         }
 
         if(isset($full_data_array['colors'])){
@@ -99,12 +100,12 @@ class DualScaleBarGraph extends Builder
         $high_y_axis = $this->ranges[$this->y_axis_key]['high']+100;
         $high_y2_axis = $this->ranges[$this->y_axis2_key]['high']+5;
 
-        $return = "
+        $dimensions = "
         var margin = {top: ".$this->margin_top.", right: ".$this->margin_right.", bottom: ".$this->margin_bottom.", left: ".$this->margin_left."},
         width = ".$this->width." - margin.left - margin.right,
         height = ".$this->height." - margin.top - margin.bottom;";
 
-        $return .= "
+        $graph = "
         var x = d3.scaleBand().range([0, width]).paddingInner(0.25).paddingOuter(0.25);
     
         var y0 = d3.scaleLinear().domain([".$low_y_axis.",".$high_y_axis."]).range([height, 0]),
@@ -183,6 +184,19 @@ class DualScaleBarGraph extends Builder
             d.money = +d.money;
             return d;
         }";
+
+        $return = $dimensions.$graph;
+
+        if($this->autosize){
+            $margins = [
+                'margin_top' => $this->margin_top,
+                'margin_left' => $this->margin_left,
+                'margin_right' => $this->margin_right,
+                'margin_bottom' => $this->margin_bottom
+            ];
+
+            $return = $this->resize($this->render_element_id,$graph,$margins);
+        }
 
         return $return;
     }

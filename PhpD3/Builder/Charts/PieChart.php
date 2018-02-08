@@ -7,21 +7,18 @@
 class PieChart extends Builder
 {
     public $chart_complete;
-
-    protected $render_element;
-    protected $data_array = array();
-    protected $height = '';
-    protected $width = '';
     protected $radius = '';
+
 
     function __construct($full_data_array=array())
     {
         parent::__construct();
 
         $this->data_array = $full_data_array['chart_data'];
-        $this->height=$full_data_array['dimensions']['height'];
-        $this->width=$full_data_array['dimensions']['width'];
-        $this->radius=$full_data_array['dimensions']['radius'];
+        $this->height= $full_data_array['dimensions']['height'];
+        $this->width= $full_data_array['dimensions']['width'];
+        $this->radius= $full_data_array['dimensions']['radius'];
+        $this->autosize = (isset($full_data_array['autosize'])) ? $full_data_array['autosize'] : false;
 
         $this->data = $this->prepData->run($this->data_array);
 
@@ -35,6 +32,7 @@ class PieChart extends Builder
             }
 
             $this->render_element = $type.$full_data_array['render_element']['value'];
+            $this->render_element_id = $full_data_array['render_element']['value'];
         }
         
         if(isset($full_data_array['colors'])){
@@ -56,13 +54,16 @@ class PieChart extends Builder
     }
 
     function buildChart(){
-        $return ="
+
+        $dimensions = "
+        var width = ".$this->width.";
+        var height = ".$this->height.";";
+
+        $chart ="
+            
+        var radius = Math.min(width, height) / 2;
         
         var  data = ".$this->data.";
-        
-        var width = ".$this->width.",
-            height = ".$this->height.",
-            radius = Math.min(width, height) / 2;
         
         var color = d3.scaleOrdinal()
         .range(".$this->colors.");
@@ -98,6 +99,12 @@ class PieChart extends Builder
         .attr(\"transform\", function(d) { return \"translate(\" + labelArc.centroid(d) + \")\"; })
         .attr(\"dy\", \".35em\")
         .text(function(d, i) { return data[i].label; });";
+
+        $return = $dimensions.$chart;
+
+        if($this->autosize){
+            $return = $this->resize($this->render_element_id,$chart);
+        }
 
         return $return;
     }

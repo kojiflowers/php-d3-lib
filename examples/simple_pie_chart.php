@@ -25,12 +25,7 @@
 <h2>Welcome to the Simple Pie Chart Example</h2>
 <p>In this example we will be exploring the Simple Pie Chart using the php-d3-lib.</p>
 
-<h4>To begin be sure to include the library</h4>
-<pre>
-
-</pre>
-
-<h3>Pie Chart 1</h3>
+<h3>Pie Chart 1 (Autosized)</h3>
 <div id="chart"></div>
 
 <h4>Pie Chart 1 PHP Code</h4>
@@ -79,7 +74,8 @@ $data = array(
         '#FFC173',
         '#a05d56',
         '#d0743c'
-    )
+    ),
+    'autosize' => true,
 );
 
 $chart = new PhpD3\Draw('simple_pie_chart',$data);
@@ -89,6 +85,8 @@ echo $chart_render;
 
 </pre>
 
+<br />
+<hr />
 
 <h3>Pie Chart 2</h3>
 <div id="chart_2"></div>
@@ -192,7 +190,8 @@ $data = array(
         '#FFC173',
         '#a05d56',
         '#d0743c'
-    )
+    ),
+    'autosize' => true
 );
 
 $chart = new PhpD3\Draw('simple_pie_chart',$data);

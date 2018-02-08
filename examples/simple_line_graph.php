@@ -59,11 +59,11 @@
 <p>In this example we will be exploring the Simple Line Graph using the php-d3-lib.</p>
 
 
-<h3>Line Graph 1</h3>
-<div id="chart"></div>
+<h3>Line Graph 1 (Autosized)</h3>
+<div id="graph"></div>
 
 <h4>Line Graph 1 PHP Code</h4>
-<p>*renders chart into element with id="chart"</p>
+<p>*renders graph into element with id="graph"</p>
 <pre>
 // if not included already, include the autoloader
 include('../PhpD3/autoloader.php');
@@ -75,7 +75,41 @@ $data = array(
         'width'=>950
     ),
     'render_element'=>array(
-        'value'=>'chart',
+        'value'=>'graph',
+        'type'=>'id'
+    ),
+    'axis_data'=>array(
+        'x_axis_label'=>'letter',
+        'y_axis_label'=>'frequency',
+    ),
+    'file_type'=>'tsv',
+    'autosize' => true
+);
+
+$graph = new PhpD3\Draw('simple_line_graph',$data);
+$graph_render = $graph->render();
+</pre>
+
+<br />
+<hr />
+
+<h3>Line Graph 2</h3>
+<div id="graph_2"></div>
+
+<h4>Line Graph 2 PHP Code</h4>
+<p>*renders graph into element with id="graph_2"</p>
+<pre>
+// if not included already, include the autoloader
+include('../PhpD3/autoloader.php');
+
+$data = array(
+    'data_file'=>'graph_data.tsv',
+    'dimensions'=>array(
+        'height'=>500,
+        'width'=>950
+    ),
+    'render_element'=>array(
+        'value'=>'graph_2',
         'type'=>'id'
     ),
     'axis_data'=>array(
@@ -85,8 +119,8 @@ $data = array(
     'file_type'=>'tsv',
 );
 
-$chart = new PhpD3\Draw('simple_line_graph',$data);
-$chart_render = $chart->render();
+$graph = new PhpD3\Draw('simple_line_graph',$data);
+$graph_render = $graph->render();
 </pre>
 
 <?php
@@ -101,7 +135,30 @@ $data = array(
         'width'=>950
     ),
     'render_element'=>array(
-        'value'=>'chart',
+        'value'=>'graph',
+        'type'=>'id'
+    ),
+    'axis_data'=>array(
+        'x_axis_label'=>'letter',
+        'y_axis_label'=>'frequency',
+    ),
+    'file_type'=>'tsv',
+    'autosize' => true
+);
+
+$graph = new PhpD3\Draw('simple_line_graph',$data);
+$graph_render = $graph->render();
+
+echo $graph_render;
+
+$data = array(
+    'data_file'=>'graph_data.tsv',
+    'dimensions'=>array(
+        'height'=>500,
+        'width'=>950
+    ),
+    'render_element'=>array(
+        'value'=>'graph_2',
         'type'=>'id'
     ),
     'axis_data'=>array(
@@ -111,10 +168,10 @@ $data = array(
     'file_type'=>'tsv',
 );
 
-$chart = new PhpD3\Draw('simple_line_graph',$data);
-$chart_render = $chart->render();
+$graph = new PhpD3\Draw('simple_line_graph',$data);
+$graph_render = $graph->render();
 
 
-echo $chart_render;
+echo $graph_render;
 
 ?>

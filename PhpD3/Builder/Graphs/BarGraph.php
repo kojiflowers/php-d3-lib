@@ -24,6 +24,7 @@ class BarGraph extends Builder
     protected $render_element;
     protected $file_type;
     protected $data;
+    protected $render_element_id;
 
     function __construct($full_data_array=array())
     {
@@ -44,6 +45,7 @@ class BarGraph extends Builder
         $this->margin_left = (isset($full_data_array['margins']['left'])) ? $full_data_array['margins']['left'] : 40;
         $this->margin_right = (isset($full_data_array['margins']['right'])) ? $full_data_array['margins']['right'] : 20;
 
+        $this->autosize = (isset($full_data_array['autosize'])) ? $full_data_array['autosize'] : false;
 
         $this->render_element = '';
         if(isset($full_data_array['render_element']['value'])){
@@ -55,6 +57,7 @@ class BarGraph extends Builder
             }
 
             $this->render_element = $type.$full_data_array['render_element']['value'];
+            $this->render_element_id = $full_data_array['render_element']['value'];
         }
 
         if(isset($full_data_array['colors'])){
@@ -77,14 +80,15 @@ class BarGraph extends Builder
 
     function buildGraph(){
 
-        $return ="var data = ".$this->data.";";
-
-        $return .="
-       
+        $dimensions ="
         // set the dimensions and margins of the graph
         var margin = {top: ".$this->margin_top.", right: ".$this->margin_right.", bottom: ".$this->margin_bottom.", left: ".$this->margin_left."},
         width = ".$this->width." - margin.left - margin.right,
-        height = ".$this->height." - margin.top - margin.bottom;
+        height = ".$this->height." - margin.top - margin.bottom;";
+
+        $graph="
+        
+        var data = ".$this->data.";
         
         // set the ranges
         var x = d3.scaleBand().range([0, width]).padding(0.1);
@@ -132,6 +136,19 @@ class BarGraph extends Builder
         // add the y Axis
         svg.append(\"g\").call(d3.axisLeft(y));
         ";
+
+        $return = $dimensions.$graph;
+
+        if($this->autosize){
+            $margins = [
+                'margin_top' => $this->margin_top,
+                'margin_left' => $this->margin_left,
+                'margin_right' => $this->margin_right,
+                'margin_bottom' => $this->margin_bottom
+            ];
+
+            $return = $this->resize($this->render_element_id,$graph,$margins);
+        }
 
         return $return;
     }
