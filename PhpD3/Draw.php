@@ -4,6 +4,7 @@ use PhpD3\Builder\DualScaleBarGraph;
 use PhpD3\Builder\LineGraph;
 use PhpD3\Builder\PieChart;
 use PhpD3\Builder\BarGraph;
+use PhpD3\Builder\SunburstChart;
 
 // ref: https://github.com/d3/d3/wiki/Gallery
 
@@ -49,7 +50,15 @@ class Draw{
                 $this->chart = $this->load($built_chart);
 
                 break;
-    
+
+            case 'sunburst_chart';
+
+            $built_chart = $this->sunburstChart();
+
+            $this->chart = $this->load($built_chart);
+
+            break;
+
             }
         }
 
@@ -129,6 +138,16 @@ class Draw{
     private function simpleLineGraph(){
 
         $render = new LineGraph($this->data);
+
+        return $render;
+    }
+
+    /**
+     * @return SunburstChart
+     */
+    private function sunburstChart(){
+
+        $render = new SunburstChart($this->data);
 
         return $render;
     }

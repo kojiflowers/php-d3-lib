@@ -11,6 +11,8 @@ class Builder
     protected $data_array = array();
     protected $height = '';
     protected $width = '';
+    protected $data_file;
+    protected $file_type;
 
     public function __construct()
     {
@@ -18,6 +20,13 @@ class Builder
 
     }
 
+    /**
+     * Universal resize capability for graph or chart
+     * @param $render_element_id
+     * @param $chart
+     * @param bool $margins
+     * @return string
+     */
     public function resize($render_element_id,$chart,$margins=false){
 
             $margin_top = (isset($margins['margin_top'])) ? $margins['margin_top'] : 0;
@@ -43,5 +52,38 @@ class Builder
                 ";
 
         return $return;
+    }
+
+    /**
+     * Generate the color array values
+     * @param $full_data_array
+     */
+    public function generateColors($full_data_array){
+
+        if(isset($full_data_array['colors'])){
+
+            $this->colors = '["'.implode('","', $full_data_array['colors']).'"]';
+
+        }else{
+            $this->colors = '["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]';
+        }
+    }
+
+    /**
+     * Generate the render_element and render_element_id values
+     * @param $full_data_array
+     */
+    public function generateRenderElement($full_data_array){
+        if(isset($full_data_array['render_element']['value'])){
+
+            $type = '#';
+
+            if($full_data_array['render_element']['type'] == 'class'){
+                $type = '.';
+            }
+
+            $this->render_element = $type.$full_data_array['render_element']['value'];
+            $this->render_element_id = $full_data_array['render_element']['value'];
+        }
     }
 }

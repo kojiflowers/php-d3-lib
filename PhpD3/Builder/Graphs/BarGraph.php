@@ -47,26 +47,9 @@ class BarGraph extends Builder
 
         $this->autosize = (isset($full_data_array['autosize'])) ? $full_data_array['autosize'] : false;
 
-        $this->render_element = '';
-        if(isset($full_data_array['render_element']['value'])){
+        $this->generateRenderElement($full_data_array);
 
-            $type = '#';
-
-            if($full_data_array['render_element']['type'] == 'class'){
-                $type='.';
-            }
-
-            $this->render_element = $type.$full_data_array['render_element']['value'];
-            $this->render_element_id = $full_data_array['render_element']['value'];
-        }
-
-        if(isset($full_data_array['colors'])){
-
-            $this->colors = '["'.implode('","', $full_data_array['colors']).'"]';
-
-        }else{
-            $this->colors = '["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]';
-        }
+        $this->generateColors($full_data_array);
 
         $this->chart_complete = $this->buildGraph();
 

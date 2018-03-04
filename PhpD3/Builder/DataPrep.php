@@ -21,6 +21,10 @@ class DataPrep
                 return $this->prepCsv($data_file);
             break;
 
+            case 'json';
+                return $this->prepJson($data_file);
+            break;
+
             default;
                 return $this->prepArray($data_file);
             break;
@@ -89,6 +93,14 @@ class DataPrep
 
     public function prepArray($array){
         return json_encode($array);
+    }
+
+    public function prepJson($data_file){
+
+        $json = file_get_contents($data_file);
+
+        return $json;
+
     }
 
     public function findDataRanges($data){

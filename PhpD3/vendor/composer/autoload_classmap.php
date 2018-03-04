@@ -12,5 +12,6 @@ return array(
     'PhpD3\\Builder\\DualScaleBarGraph' => $baseDir . '/Builder/Graphs/DualScaleBarGraph.php',
     'PhpD3\\Builder\\LineGraph' => $baseDir . '/Builder/Graphs/LineGraph.php',
     'PhpD3\\Builder\\PieChart' => $baseDir . '/Builder/Charts/PieChart.php',
+    'PhpD3\\Builder\\SunburstChart' => $baseDir . '/Builder/Charts/SunburstChart.php',
     'PhpD3\\Draw' => $baseDir . '/Draw.php',
 );
