@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'PhpD3\\Builder\\AdvancedSunburstChart' => $baseDir . '/Builder/Charts/AdvancedSunburstChart.php',
     'PhpD3\\Builder\\BarGraph' => $baseDir . '/Builder/Graphs/BarGraph.php',
     'PhpD3\\Builder\\Builder' => $baseDir . '/Builder/Builder.php',
     'PhpD3\\Builder\\DataPrep' => $baseDir . '/Builder/DataPrep.php',

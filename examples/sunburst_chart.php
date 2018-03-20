@@ -43,7 +43,7 @@ $data = array(
     'autosize'=>true
 );
 
-$chart = new PhpD3\Draw('dual_scale_bar_chart',$data);
+$chart = new PhpD3\Draw('sunburst_chart',$data);
 $chart_render = $chart->render();
 
 echo $chart_render;
@@ -75,7 +75,7 @@ $data = array(
     'file_type'=>'json',
 );
 
-$chart = new PhpD3\Draw('dual_scale_bar_chart',$data);
+$chart = new PhpD3\Draw('sunburst_chart',$data);
 $chart_render = $chart->render();
 
 echo $chart_render;

@@ -57,13 +57,12 @@ class Builder
     /**
      * Generate the color array values
      * @param $full_data_array
+     * @param string $type
      */
-    public function generateColors($full_data_array){
+    public function generateColors($full_data_array,$type="array"){
 
         if(isset($full_data_array['colors'])){
-
-            $this->colors = '["'.implode('","', $full_data_array['colors']).'"]';
-
+            $this->colors = json_encode($full_data_array['colors']);
         }else{
             $this->colors = '["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]';
         }

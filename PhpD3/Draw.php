@@ -1,5 +1,6 @@
 <?php namespace PhpD3;
 
+use PhpD3\Builder\AdvancedSunburstChart;
 use PhpD3\Builder\DualScaleBarGraph;
 use PhpD3\Builder\LineGraph;
 use PhpD3\Builder\PieChart;
@@ -53,12 +54,19 @@ class Draw{
 
             case 'sunburst_chart';
 
-            $built_chart = $this->sunburstChart();
+                $built_chart = $this->sunburstChart();
 
-            $this->chart = $this->load($built_chart);
+                $this->chart = $this->load($built_chart);
 
-            break;
+                break;
 
+            case 'advanced_sunburst_chart';
+
+                $built_chart = $this->advancedSunburstChart();
+
+                $this->chart = $this->load($built_chart);
+
+                break;
             }
         }
 
@@ -152,5 +160,13 @@ class Draw{
         return $render;
     }
 
+    /**
+     * @return AdvancedSunburstChart
+     */
+    private function advancedSunburstChart(){
 
+        $render = new AdvancedSunburstChart($this->data);
+
+        return $render;
+    }
 }
