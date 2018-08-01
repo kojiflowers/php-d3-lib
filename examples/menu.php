@@ -17,4 +17,5 @@ $base_url = sprintf(
     <li><a href="<?php echo $base_url; ?>dual_scale_bar_graph.php">Dual Scale Bar Graph Example</a></li>
     <li><a href="<?php echo $base_url; ?>sunburst_chart.php">SunBurst Chart Example</a></li>
     <li><a href="<?php echo $base_url; ?>advanced_sunburst_chart.php">Advanced SunBurst Chart Example</a></li>
+    <li><a href="<?php echo $base_url; ?>export_chart_as_png.php">Export Chart As PNG Example</a></li>
 </ul>
